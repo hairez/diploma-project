@@ -19,3 +19,7 @@ rev = int(cmdlinearg('reversed', 0))
 
 print(n)
 
+a = [random.randint(0, max_ai) for i in range(n)]
+if rev:
+    a = reversed(sorted(a))
+print(' '.join(map(str, a)))
