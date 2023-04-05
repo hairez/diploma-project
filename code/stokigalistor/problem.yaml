@@ -1,0 +1,8 @@
+author: Harry Zhang, Jonathan Hallström
+source: Doris 2023 deltävling 1
+license: cc by-sa
+type: scoring
+grading:
+    show_test_data_groups: yes
+limits:
+    time_multiplier: 2
