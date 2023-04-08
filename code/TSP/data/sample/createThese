@@ -1,8 +1,11 @@
-1. Normal map - Swedish map
-2. Normal map - America
-3. Randomly generated
-4. Randomly generated
-5. Randomly generated
+1. Randomly generated - small map
+2. Randomly generated - medium map
+3. Randomly generated - big map
+
+4. Normal map - Swedish map
+5. Normal map - America
+
+
 
 6. Randomly generated, but y_i<y_{i+1} at the same time x_i<x_{i+1}
 
