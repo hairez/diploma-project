@@ -3,6 +3,7 @@
 PPATH=$(realpath ..)
 
 REQUIRE_SAMPLE_REUSE=0
+
 . ../../testdata_tools/gen.sh
 
 use_solution randomPath.py
@@ -19,13 +20,14 @@ group g3 10
 tc random_big gen n=1000000
 
 group g4 10
-tc smalln1 gen n=1000
+tc_manual ../data/manual_testdata/sweden.in
+
+group g5 10
+tc_manual ../data/manual_testdata/united_states.in
 
 
-group g5 40
-include_group g1
-include_group g2
-include_group sample
+
+group g6 40
 tc full2 gen
 tc full3 gen
 tc full4 gen
