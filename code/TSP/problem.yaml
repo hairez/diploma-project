@@ -2,6 +2,7 @@ author: Harry Zhang
 source: Harry's Diploma Project 2023
 license: cc by-sa
 type: scoring
+validation: custom score
 grading:
     show_test_data_groups: yes
 limits:
