@@ -37,3 +37,6 @@ tc grid gen grid=1 n=10000
 
 group g9 10
 tc straight gen straight=1 n=10000
+
+group g10 10
+tc strictlyIncrease_small gen increase=1 n=100

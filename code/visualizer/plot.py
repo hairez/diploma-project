@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 
 labels=["g1/001-random_small.in","g2/002-random_medium.in","g3/003-random_big.in","g4/004-sweden.in","g5/005-united_states.in",
-        "g6/006-strictlyIncrease.in","g7/007-circle.in","g8/008-grid.in","g9/009-straight.in","g1/001-random_small.in"]
+        "g6/006-strictlyIncrease.in","g7/007-circle.in","g8/008-grid.in","g9/009-straight.in","g10/010-strictlyIncrease_small.in"]
 
 for t in labels:
 
@@ -35,7 +35,9 @@ for t in labels:
 
     plt.title(t)
     
-
+    if t=="g10/010-strictlyIncrease_small.in":
+        t="g1/010-strictlyIncrease_small.in"
+    
     plt.savefig("/home/harry/diploma-project/code/visualizer/"+t[4:6]+".png")
 
     plt.clf()
