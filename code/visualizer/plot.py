@@ -29,6 +29,6 @@ for t in labels:
     plt.title(t)
     
 
-    plt.savefig("code/visualizer/"+t[4:-3]+".png")
+    plt.savefig("code/visualizer/"+t[4:6]+".png")
 
     plt.clf()
