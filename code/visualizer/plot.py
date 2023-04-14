@@ -19,7 +19,7 @@ for t in labels:
         x.append(currx)
         y.append(curry)
 
-    plt.scatter(x, y,s=10)
+    plt.scatter(x, y,s=1)
 
     plt.xlabel('x - axis')
 
