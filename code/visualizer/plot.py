@@ -19,6 +19,13 @@ for t in labels:
         x.append(currx)
         y.append(curry)
 
+    if t == "g4/004-sweden.in":
+        plt.figure(figsize=(4.8,9.6))
+    elif t == "g4/004-sweden.in":
+        plt.figure(figsize=(6.4*2,4.8*2))
+    else:
+        plt.figure(figsize=(6.4*2,4.8*2))
+
     plt.scatter(x, y,s=1)
 
     plt.xlabel('x - axis')
@@ -29,6 +36,6 @@ for t in labels:
     plt.title(t)
     
 
-    plt.savefig("code/visualizer/"+t[4:6]+".png")
+    plt.savefig("/home/harry/diploma-project/code/visualizer/"+t[4:6]+".png")
 
     plt.clf()
