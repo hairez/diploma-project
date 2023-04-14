@@ -6,7 +6,7 @@ labels=["g1/001-random_small.in","g2/002-random_medium.in","g3/003-random_big.in
 
 for t in labels:
 
-    file=open(f"/home/harry/diploma-project/code/TSP/data/secret/{t}")
+    file=open(f"/home/harry/diploma-project/code/tsp/data/secret/{t}")
 
     inp = [*file]
     file.close()
@@ -38,6 +38,6 @@ for t in labels:
     if t=="g10/010-strictlyIncrease_small.in":
         t="g1/010-strictlyIncrease_small.in"
     
-    plt.savefig("/home/harry/diploma-project/code/visualizer/"+t[4:6]+".png")
+    plt.savefig("/home/harry/diploma-project/code/visualizer/testdata/"+t[4:6]+".png")
 
     plt.clf()

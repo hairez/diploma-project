@@ -1,6 +1,5 @@
 import math
-import time
-import random
+
 
 def totalDist(path):
  dist=0
@@ -18,7 +17,8 @@ def distance(p1,p2=(0,0)):
  x2,y2=p2
 
  return math.sqrt((y2-y1)**2+(x2-x1)**2)
- 
+
+
 n=int(input())
 
 cities=[]
@@ -27,23 +27,9 @@ for a in range(n):
  x,y=map(int,input().split())
  cities.append((x,y))
 
-#^^^^^ same for every solution
+order=[]
 
-startTime = time.time()
+for a in range(n):
+ order.append(int(input()))
 
-
-order=[*range(n)]
-bestDist=math.inf
-bestOrder=[]
-
-while time.time()-startTime<1.9:
- temp = totalDist(order)
- 
- if bestDist>temp:
-    bestDist=totalDist(order)
-    bestOrder=order[::]
-
- random.shuffle(order)
-
-for a in order:
- print(a)
+print(totalDist(order))
