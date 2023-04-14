@@ -27,7 +27,7 @@ tc_manual ../data/manual_testdata/united_states.in
 
 
 group g6 10
-tc stricyIncrease gen increase=1 n=10000
+tc strictlyIncrease gen increase=1 n=10000
 
 group g7 10
 tc circle gen circle=1 n=10000
