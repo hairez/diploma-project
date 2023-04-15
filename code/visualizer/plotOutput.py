@@ -6,4 +6,23 @@ labels=["g1/001-random_small.in","g2/002-random_medium.in","g3/003-random_big.in
 
 for t in labels:
 
-    file=open(f"/home/harry/diploma-project/code/tsp/data/secret/{t}")
+    inputFile=open(f"/home/harry/diploma-project/code/tsp/data/secret/{t}")
+
+    inp=[*inputFile]
+        
+    inputFile.close()
+
+    n=int(inp[0])
+    
+    cityX=[]
+    cityY=[]
+    
+    for string in inp[1]:
+        x,y=map(int,string.split())
+        cityX.append(x)
+        cityY.append(y)
+    
+    #ta in input från /output/001.......
+    #specifiera vilken ordning det ska vara i.
+    #plotta
+    
