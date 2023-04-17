@@ -17,6 +17,19 @@
 
 \usepackage{parskip} %puts \noindent everywhere
 
+
+\usepackage{caption}
+\DeclareCaptionFormat{citation}{%
+  \ifx\captioncitation\relax\relax\else
+    \captioncitation\par
+  \fi
+  #1#2#3\par}
+\newcommand*\setcaptioncitation[1]{\def\captioncitation{\textit{Source:}~#1}}%to add sources to figures
+\let\captioncitation\relax
+\captionsetup{format=citation,justification=centering}
+
+
+
 %https://www.overleaf.com/project/642180d8a08db24a02633ac7
 
 
@@ -32,10 +45,20 @@
 \raggedbottom
 %%\unnumbered% uncomment this for unnumbered level heads
 
+
+
+
+
+
+
 \begin{document}
 
 \title{\huge \scshape{Travelling Salesman Problem}}
-\author{\fnm{Harry Hongrui} \sur{Zhang}}
+\author{
+    \small \scshape{Harry Zhang} \\ 
+    \small \scshape{Supervisors: Per-Olof Freerks and Felicia Dinnetz} \\
+    \scriptsize \scshape{Kungsholmens Gymnasium}
+}
 
 
 
@@ -46,25 +69,12 @@
 
 
 
-
-
-
 \abstract{The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted.}
 
 
-% \abstract{\textbf{Purpose:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
-% 
-% \textbf{Methods:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
-% 
-% \textbf{Results:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.
-% 
-% \textbf{Conclusion:} The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. The abstract must not include subheadings (unless expressly permitted in the journal's Instructions to Authors), equations or citations. As a guide the abstract should not exceed 200 words. Most journals do not set a hard limit however authors are advised to check the author instructions for the journal they are submitting to.}
 
-\keywords{keyword1, Keyword2, Keyword3, Keyword4}
+\keywords{travelling salesman problem, Euclidean distance, graph, Keyword4}
 
-%%\pacs[JEL Classification]{D8, H51}
-
-%%\pacs[MSC Classification]{35A01, 65L10, 65L12, 65L20, 65L70}
 
 
 
@@ -78,17 +88,33 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Background}\label{Background}
-Consider a salesman that wants to visit a number of cities around the world. The salesman does not have to visit the cities in any particular order, but after the salesman has visited all the desired cities, the salesman has to return to the city it started out at. It is fairly straightforward how to find any path that works, but what is the shortest path that visits all the cities and returns to the initial starting position?
+Consider a salesman that wants to visit a number of cities around the world. The salesman does not have to visit the cities in any particular order, but after the salesman has visited all the desired cities, the salesman has to return to the city it started out in. It is fairly straightforward how to find any path that works, but what is the path with the shortest Euclidean distance that visits all the cities and returns to the initial starting position?
 This is the problem statement of the classic problem called \textit{The travelling salesman problem}, but it is also called \textit{the travelling salesperson problem}, or just \textit{TSP} for short.
+\newline
 
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=.5]{docs/pictures/tsp.png}
+ \caption{TSP is interpreted as a graph where a path is found. }
+\end{figure}
 
-- the goal is to minimize the total distance when visiting all cities and coming back to the initial city
+\newline
 
+The travelling salesman problem could also be interpreted as a weighted graph with a number of nodes. 
+\newline
 
-It is a NP-hard problem and there are a lot of different heuristic solutions. Some solutions might work better in some situations than others. In this research different algorithms are going to be tested on different test cases
+Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete problem \cite{PAPADIMITRIOU1977}. NP-complete problems are...
 
+It is an NP-hard problem and there are a lot of different heuristic solutions. Some solutions might work better in some situations than others. In this research different algorithms are going to be tested on different test cases
 
+Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
 
+\begin{figure}[ht]
+ \centering
+ \includegraphics[scale=.5]{example-image-b}
+ \setcaptioncitation{somewhere on the world wide web.}
+ \caption{Example caption with citation}
+\end{figure}
 
 
 computers speed, check example.
@@ -99,7 +125,7 @@ this is important because
 contextualize the topic. What could the traveling salesman problem be used for? - Robots path finding, efficiency
 
 \subsection{Research Question}\label{RQ}
-RQ: What algorithm could find the shortest path in a weighted graph, in a set amount of time?
+What algorithm could find the shortest path in a weighted graph, in a set amount of time?
 
 
 
@@ -642,8 +668,8 @@ An appendix contains supplementary information that is not an essential part of 
 %% by copying the reference list from your .bbl file, paste it into the main manuscript .tex %%
 %% file, and delete the associated \verb+\bibliography+ commands.                            %%
 %%===========================================================================================%%
-
-\bibliography{docs/references}% common bib file
+\bibliographystyle{apacite}
+\bibliography{references.bib}% common bib file
 %% if required, the content of .bbl file can be included here once bbl is generated
 %%\input sn-article.bbl
 
