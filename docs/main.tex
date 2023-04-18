@@ -88,7 +88,7 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Background}\label{Background}
-Consider a salesman that wants to visit a number of cities around the world. The salesman does not have to visit the cities in any particular order, but after the salesman has visited all the desired cities, the salesman has to return to the city it started out in. It is fairly straightforward how to find any path that works, but what is the path with the shortest Euclidean distance that visits all the cities and returns to the initial starting position?
+Consider a salesman that wants to visit a number of cities around the world. The salesman does not have to visit the cities in any particular order, but after the salesman has visited all the desired cities, the salesman has to return to the city it started out in. It is fairly straightforward how to find any path that works, but what is the path with the shortest Euclidean distance$_{\ref{Euclidean distance}}$ that visits all the cities and returns to the initial starting position?
 This is the problem statement of the classic problem called \textit{The travelling salesman problem}, but it is also called \textit{the travelling salesperson problem}, or just \textit{TSP} for short.
 \newline
 
@@ -100,17 +100,17 @@ This is the problem statement of the classic problem called \textit{The travelli
 \end{figure}
 
 
-The travelling salesman problem could also be interpreted as a weighted graph with a number of nodes. The edges between each node have a specific value or length, which signifies the Euclidean distance between each pair of cities. 
+The travelling salesman problem could also be interpreted as a weighted undirected graph$_{\ref{undirected weighted graph}}$ with a given number of nodes. The edges between each node have a specific value or length, which signifies the Euclidean distance between each pair of cities. 
 
-Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete problem \cite{PAPADIMITRIOU1977}. NP-complete problems are...
+Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete$_{\ref{NP-complete}}$ problem \cite{PAPADIMITRIOU1977}. 
 
 Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
 
-For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed and the shortest path gets stored. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a polynomial growth the more cities that have to be visited. 
+For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed and the shortest path gets stored. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that have to be visited. 
 
 It is an NP-hard problem and there are a lot of different heuristic solutions. Some solutions might work better in some situations than others. In this research, different algorithms with similar time complexities are going to be tested on different test cases. 
 
-contextualize the topic. What could the traveling salesman problem be used for? - Robots pathfinding, efficiency
+contextualize the topic. What could the traveling salesman problem be used for? - Robots pathfinding, efficiency. drilling holes on a plane wood plank
 
 
 \subsection{Aim}\label{Aim}
@@ -122,14 +122,29 @@ What algorithm could find the shortest path in a weighted graph, in a set amount
 
 
 \subsection{Theory}\label{Theory}
-\subsubsection{Euclidean Distance}\label{Euclidean Distance}
-- Distnace euclidian
+
+\subsubsection{Notations and definitions}\label{Notation and definitions}
+
+In this section, a list of basic mathematical and computer scientific definitions and terms are explained. 
+\newline
+
+\begin{enumerate}   %use the following to refer back to this part:
+                    %$_{\ref{Polynomial}}$
+ 
+  \item \textit{The Euclidean distance} between two points $p_1=(x_1,y_1)$ and $p_2=(x_2,y_2)$ is defined as $\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. \label{Euclidean distance}
+  \item Undirected weighted graph is \label{undirected weighted graph}
+  \item A problem is \textit{NP-complete} if \label{NP-complete}
+  \item The \textit{factorial} of a given non-negative integer $n$ is denoted by $n!$. It is the product of all positive integers less than or equal to $n$. $$n! = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 2 \cdot 1 $$\label{factorial}
+\end{enumerate}
+
+
+
 
 \subsubsection{Big O Notation}\label{Big O}
-Time complexities - big o notation
+When computer scientists want to compare different kinds of algorithms, they can describe the efficiency with a mathematical function that describes the estimated run time of the algorithm using Big O notations. Big O notations is a way of describing the time complexity of an algorithm, which refers to how long an algorithm takes to complete based on the size of its input. 
 
 
-
+\newline
 
 Different algorithms:
 
