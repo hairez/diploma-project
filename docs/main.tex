@@ -14,6 +14,7 @@
 \usepackage{algpseudocode}%
 \usepackage{listings}%
 
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords: ---}} #1}%keywords
 
 \usepackage{parskip} %puts \noindent everywhere
 
@@ -53,7 +54,7 @@
 
 \begin{document}
 
-\title{\huge \scshape{Travelling Salesman Problem}}
+\title{\huge \scshape{Optimal TSP Solvers: Time-Constrained Algorithm Analysis}}
 \author{
     \small \scshape{Harry Zhang} \\ 
     \small \scshape{Supervisors: Per-Olof Freerks and Felicia Dinnetz} \\
@@ -69,9 +70,7 @@
 
 
 
-\abstract{The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted.}
-
-
+\abstract{\noindent The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
 
 \keywords{travelling salesman problem, Euclidean distance, graph, Keyword4}
 
@@ -100,17 +99,18 @@ This is the problem statement of the classic problem called \textit{The travelli
 \end{figure}
 
 \noindent
-The travelling salesman problem could also be interpreted as a weighted undirected graph$_{\ref{undirected weighted graph}}$ with a given number of nodes. The edges between each node have a specific value or length, which signifies the Euclidean distance between each pair of cities. 
+The travelling salesman problem could also be interpreted as a weighted undirected graph$_{\ref{undirected weighted graph}}$ with a given number of nodes. Each node is a city that the travelling salesman has to visit. The edges between each node have a specific value or length, which signifies the Euclidean distance between each pair of cities. 
 \newline
 Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete$_{\ref{NP-complete}}$ problem \cite{PAPADIMITRIOU1977}. 
 \newline
 Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
 \newline
-For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed and the shortest path gets stored. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that have to be visited. 
+For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed, and then picking the shortest path out of all possible paths. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that have to be visited. 
 \newline
-It is an NP-hard problem and there are a lot of different heuristic solutions. Some solutions might work better in some situations than others. In this research, different algorithms with similar time complexities are going to be tested on different test cases. 
+It is an NP-hard problem and there are a lot of different heuristic solutions. Some solutions might work better in some situations than others. In this research, different algorithms are going to be tested on different test cases within a set amount of time. The algorithms being tested in this paper are variations of the following algorithms: Dijkstra's algorithm, the Genetic algorithm with random swapping, and the Genetic algorithm with 2-opt swapping.
 
-contextualize the topic. What could the traveling salesman problem be used for? - Robots pathfinding, efficiency. drilling holes on a plane wood plank
+contextualize the topic. What could the traveling salesman problem be used for? - Robots pathfinding, efficiency. drilling holes on a plane wood plank. 
+It is important to find a relatively fast approach that is both efficient in finding the most optimal path and in a short period of time, especially when a large amount of input is considered. 
 
 
 \subsection{Aim}\label{Aim}
@@ -148,16 +148,21 @@ When computer scientists want to compare different kinds of algorithms, they can
 
 \newline
 
+\subsubsection{Random Algorithm}\label{Dijkstras}
+generate a random path, and calculate the length. repeat.
+
+\subsubsection{Dijkstra's Algorithm}\label{Dijkstras}
+originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random neighbors, it would become $O(nlog(n))$
 
 
-\subsubsection{Dijkstra's}\label{subsubsec1}
+\subsubsection{Genetic Algorithm with Random Swapping}\label{Random Swapping}
+algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-\subsubsection{Grid}\label{subsubsec2}
+\subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
+algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-\subsubsection{Genetics, evolution}\label{subsubsec3}
 
-
-\subsubsection{Different Maps}\label{subsubsec1}
+\subsubsection{Generation of Maps}\label{subsubsec1}
 How does each map get generated?
 
 map4 Sweden: https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv  took the top 1000 or 10000 most populated cities in sweden
@@ -166,10 +171,13 @@ map5: USA: https://simplemaps.com/data/us-cities. took the top populated 1000 or
 
 
 \subsubsection{Integers vs floats}\label{subsubsec1}
-Computers are known to not be very efficient when handling float numbers.
+Integers and floats are two common data types for numbers. Integers are used to store whole numbers, while floats are used to store decimal numerals. Computers are known to be very inefficient when it comes to handling float numbers.
+this is why all coordinates of the maps are integers, even though coordinates on a real map are not necessarily integers. 
+
+
+
 
 \section{Method}\label{sec2}
-Method:
 Use different algorithms to solve the TSP in different maps (weighted undirected graphs).
 
 
@@ -181,10 +189,9 @@ Independent: the algorithm
 
 Constant variables: The maps and the max amount of time. Programming language: python
 
-The maps: Everything on the same line. Check PO-testdata, on github
+The maps: 
 
-
-
+\subsection{Limitations}\label{subsec3}
 
 
 
@@ -196,20 +203,29 @@ The maps: Everything on the same line. Check PO-testdata, on github
 
 Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
 
-\subsection{Map 1?}\label{subsec1}
-
-\subsection{Map 2?}\label{subsec2}
+show table
 
 
 
-\subsection{Limitations}\label{subsec3}
+
+
 
 \section{Discussion}\label{sec4}
+
+
 \subsection{Generalised result}\label{subsec1}
+which algorithm showed the best results overall?
+
 
 \subsection{Specified }\label{subsec2}
+what algorithm could be good in what situation?
+
 
 \subsection{Evaluation and further research}\label{subsec3}
+Simulated annealing.
+3 opt.
+Longer time-constraints?
+
 
 \section{Conclusion}\label{sec5}
 
