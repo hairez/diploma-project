@@ -24,7 +24,7 @@ n=int(input())
 cities=[]
 
 for a in range(n):
- x,y=map(int,input().split())
+ x,y=map(eval,input().split())
  cities.append((x,y))
 
 #^^^^^ same for every solution
@@ -38,12 +38,12 @@ bestOrder=[]
 
 while time.time()-startTime<1.9:
  temp = totalDist(order)
- 
+
  if bestDist>temp:
     bestDist=totalDist(order)
     bestOrder=order[::]
 
  random.shuffle(order)
 
-for a in order:
+for a in bestOrder:
  print(a)
