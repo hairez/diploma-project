@@ -40,7 +40,7 @@ while time.time()-startTime<1.9:
  temp = totalDist(order)
 
  if bestDist>temp:
-    bestDist=totalDist(order)
+    bestDist=temp
     bestOrder=order[::]
 
  random.shuffle(order)
