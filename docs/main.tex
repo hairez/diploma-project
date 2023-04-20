@@ -150,8 +150,7 @@ When computer scientists want to compare different kinds of algorithms, they can
 \newline
 
 \subsubsection{Random Algorithm}\label{Dijkstras}
-generate a random path, and calculate the length. repeat.
-The random algorithms generate a random permutation and calculate the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible node. 
+The random algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. 
 
 \begin{algorithm}
 \caption{Algorithm that generates random paths}\label{Random Algorithm}
@@ -169,6 +168,8 @@ The random algorithms generate a random permutation and calculate the length of 
 \end{algorithmic}
 \end{algorithm}
 
+\noindent
+This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible node. 
 
 \subsubsection{Dijkstra's Algorithm}\label{Dijkstras}
 Dijkstra's algorithm is 
