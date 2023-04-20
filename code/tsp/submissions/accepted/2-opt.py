@@ -55,6 +55,13 @@ def getSegment(i,order):
   segment.append(order[0])
  else:
   segment.append(order[i+1])
+
+ if i==len(order)-1:
+  segment.append(order[1])
+ elif i==len(order)-2:
+  segment.append(order[0])
+ else:
+  segment.append(order[i+1])
  
  return segment
   
@@ -67,7 +74,8 @@ random.shuffle(order)
 
 
 while time.time()-startTime<1.9:
- x,y=random.randint(0,n-1),random.randint(0,n-1)
+ x=random.randint(0,n-2)
+ y=random.randint(x+1,n-1)
 
  if x==y:continue
 
