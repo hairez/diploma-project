@@ -14,6 +14,7 @@
 \usepackage{algpseudocode}%
 \usepackage{listings}%
 
+
 \providecommand{\keywords}[1]{\textbf{\textit{Keywords: ---}} #1}%keywords
 
 \usepackage{parskip} %puts \noindent everywhere
@@ -150,8 +151,27 @@ When computer scientists want to compare different kinds of algorithms, they can
 
 \subsubsection{Random Algorithm}\label{Dijkstras}
 generate a random path, and calculate the length. repeat.
+The random algorithms generate a random permutation and calculate the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible node. 
+
+\begin{algorithm}
+\caption{Algorithm that generates random paths}\label{Random Algorithm}
+\begin{algorithmic}
+
+\While{Less than 2 seconds has passed}
+\State $order \gets $ random permutation of the $n$ nodes
+\State $currPath \gets calculatePath(order)$
+\If{$bestPath > currPath$}
+\State $bestOrder \gets order$
+\State $bestPath \gets currPath$
+\EndIf
+\EndWhile
+
+\end{algorithmic}
+\end{algorithm}
+
 
 \subsubsection{Dijkstra's Algorithm}\label{Dijkstras}
+Dijkstra's algorithm is 
 originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random neighbors, it would become $O(nlog(n))$
 
 
@@ -226,7 +246,7 @@ using $O(n^2)$ algorithms such as
 greedy algorithm
 Christofides algorithm
 Simulated annealing.
-3 opt.
+3 opt. or even Lin-Kernighan Heuristic algorithm
 Longer time-constraints?
 combination of these? For example start with a greedy solution, and then improve it by applying 3-opt.
 
