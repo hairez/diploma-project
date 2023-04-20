@@ -174,8 +174,14 @@ This algorithm has a time complexity of $O(n)$, since the generation of a random
 \subsubsection{Dijkstra's Algorithm}\label{Dijkstras}
 Dijkstra's algorithm is a classic algorithm that for each step in the path, chooses the next unvisited node that is closest to that node. 
 
+%put original dijkstra's algorithm here
+
+
 It might seem that this approach will always find the shortest path, however, there are cases where this approach does not do that. 
 
+%show example of where dijkstra's algorithm doesn't work
+
+Furthermore, the original Dijkstra's algorithm's time complexity is dependent on the number of edges that the graph has, which in this case the number of edges would be exactly $\frac{n \cdot (n-1)}{2}$. For that reason, the time complexity of the mentioned algorithm is $O(n^2)$.
 
 
 
