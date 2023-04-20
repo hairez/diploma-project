@@ -172,9 +172,14 @@ The random algorithm generates a random permutation of all possible nodes and ca
 This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible node. 
 
 \subsubsection{Dijkstra's Algorithm}\label{Dijkstras}
-Dijkstra's algorithm is 
-originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random neighbors, it would become $O(nlog(n))$
+Dijkstra's algorithm is a classic algorithm that for each step in the path, chooses the next unvisited node that is closest to that node. 
 
+It might seem that this approach will always find the shortest path, however, there are cases where this approach does not do that. 
+
+
+
+
+originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random neighbors, it would become $O(nlog(n))$
 
 \subsubsection{Genetic Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
@@ -182,14 +187,12 @@ algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run unti
 \subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-
 \subsubsection{Generation of Maps}\label{subsubsec1}
 How does each map get generated?
 
 map4 Sweden: https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv  took the top 1000 or 10000 most populated cities in sweden
 
 map5: USA: https://simplemaps.com/data/us-cities. took the top populated 1000 or 10000 most populated cities in USA.
-
 
 \subsubsection{Integers vs floats}\label{subsubsec1}
 Integers and floats are two common data types for numbers. Integers are used to store whole numbers, while floats are used to store decimal numerals. Computers are known to be very inefficient when it comes to handling float numbers.
