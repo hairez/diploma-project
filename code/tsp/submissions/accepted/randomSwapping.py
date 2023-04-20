@@ -61,32 +61,59 @@ def getSegment(i,order):
  
  
 startTime=time.time()
+bestOrder=[1]
+shortestPath=math.inf
 
-order=[*range(n)]
-random.shuffle(order)
 
 
 while time.time()-startTime<1.9:
- x,y=random.randint(0,n-1),random.randint(0,n-1)
+    order=[*range(n)]
+    random.shuffle(order)
 
- if x==y:continue
+    t=currT=0
+    while time.time()-startTime<1.9:
+        
+        t+=1
+        x,y=random.randint(0,n-1),random.randint(0,n-1)
 
- seg1=getSegment(x,order)
- seg2=getSegment(y,order)
+        if x==y:continue
 
- distBefore=segmentDist(seg1) + segmentDist(seg2)
+        seg1=getSegment(x,order)
+        seg2=getSegment(y,order)
 
- seg1[1],seg2[1]=seg2[1],seg1[1]
+        distBefore=segmentDist(seg1) + segmentDist(seg2)
 
- if seg1[1]==seg1[2]:
-  seg1[2],seg2[0]=seg2[0],seg1[2]
- elif seg1[1]==seg1[0]:
-  seg1[0],seg2[2]=seg2[2],seg1[0]
+        seg1[1],seg2[1]=seg2[1],seg1[1]
 
- distAfter=segmentDist(seg1) + segmentDist(seg2)
+        if seg1[1]==seg1[2]:
+            seg1[2],seg2[0]=seg2[0],seg1[2]
+        elif seg1[1]==seg1[0]:
+            seg1[0],seg2[2]=seg2[2],seg1[0]
 
- if distAfter<distBefore:
-  order[x],order[y]=order[y],order[x]
+        distAfter=segmentDist(seg1) + segmentDist(seg2)
 
-for node in order:
+        if distAfter<distBefore:
+
+            currT=t
+            order[x],order[y]=order[y],order[x]
+
+        elif t-currT>4000:
+            break
+    
+    
+    temp=totalDist(order)
+
+    if shortestPath>temp:
+        shortestPath=temp
+        bestOrder=order[::]
+
+
+
+
+for node in bestOrder:
  print(node)
+
+"""
+print(time.time()-startTime)
+print(t)
+"""

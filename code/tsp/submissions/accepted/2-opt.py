@@ -39,62 +39,69 @@ def segmentDist(path):
  
  return dist
 
-def getSegment(i,order):
- segment=[]
+
+def getLeft(i,order):
 
  if i==0:
-  segment.append(order[-1])
- else:
-  segment.append(order[i-1])
- 
+  return order[-1]
+ return order[i-1]
 
- segment.append(order[i])
-
+def getRight(i,order):
 
  if i==len(order)-1:
-  segment.append(order[0])
- else:
-  segment.append(order[i+1])
+  return order[0]
+ return order[i+1]
+ 
 
- if i==len(order)-1:
-  segment.append(order[1])
- elif i==len(order)-2:
-  segment.append(order[0])
- else:
-  segment.append(order[i+1])
- 
- return segment
-  
- 
- 
 startTime=time.time()
 
-order=[*range(n)]
-random.shuffle(order)
+bestOrder=[1]
+shortestPath=math.inf
 
+
+t=currT=0
 
 while time.time()-startTime<1.9:
- x=random.randint(0,n-2)
- y=random.randint(x+1,n-1)
 
- if x==y:continue
+    order=[*range(n)]
 
- seg1=getSegment(x,order)
- seg2=getSegment(y,order)
+    random.shuffle(order)
 
- distBefore=segmentDist(seg1) + segmentDist(seg2)
+    while time.time()-startTime<1.9:
+        t+=1
+        x=random.randint(0,n-2)
+        y=random.randint(x+1,n-1)
 
- seg1[1],seg2[1]=seg2[1],seg1[1]
+        if x==y:continue
 
- if seg1[1]==seg1[2]:
-  seg1[2],seg2[0]=seg2[0],seg1[2]
- elif seg1[1]==seg1[0]:
-  seg1[0],seg2[2]=seg2[2],seg1[0]
+        xLeft=getLeft(x,order)
+        yRight=getRight(y,order)
 
- distAfter=segmentDist(seg1) + segmentDist(seg2)
+        if xLeft==order[y]:continue
+        if xLeft==yRight:continue
 
- if distAfter<distBefore:
-  order[x],order[y]=order[y],order[x]
+        distBefore=segmentDist([order[x],xLeft]) + segmentDist([order[y],yRight])
+
+        distAfter=segmentDist([order[x],yRight]) + segmentDist([order[y],xLeft])
+
+        if distAfter<distBefore:
+            currT=t
+            order=order[:x]+order[x:y+1][::-1]+order[y+1:]
+            #print(totalDist(order))
+        elif t-currT>5000:
+            break
+
+    temp=totalDist(order)
+
+    if shortestPath>temp:
+        shortestPath=temp
+        bestOrder=order[::]
+
 
 for node in order:
  print(node)
+
+"""
+print(time.time()-startTime)
+print(t)
+"""

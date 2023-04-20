@@ -81,64 +81,73 @@ if n<=10: #only works for n<11.
  #print(time.time()-startTime)
 
 else:
- startTime=time.time()
+    startTime=time.time()
 
- bestOrder=[]
- shortestPath=math.inf
+    bestOrder=[1]
+    shortestPath=math.inf
 
+    while time.time()-startTime<1.9:
+        order=[]
+        order.append(random.randint(0,n-1))
+    
+        unvisited=[*range(n)]
+        unvisited.remove(order[-1])
 
- for a in range(1):
+        for i in range(n-1):
+    
+            bestNeighbour=unvisited[-1]
+            closest=math.inf
 
-  order=[]
-  order.append(random.randint(0,n-1))
- 
-  unvisited=[*range(n)]
-  unvisited.remove(order[-1])
+            for neighbour in unvisited[:-1]:
+                currDist=distance(cities[order[-1]],cities[neighbour])
 
-  for i in range(n-1):
-  
-   bestNeighbour=unvisited[-1]
-   closest=math.inf
-
-   for neighbour in unvisited[:-1]:
-    currDist=distance(cities[order[-1]],cities[neighbour])
-
-    if currDist<closest:
-     closest=currDist
-     bestNeighbour=neighbour
-  
-   order.append(bestNeighbour)
-   unvisited.remove(bestNeighbour)
- 
+                if currDist<closest:
+                    closest=currDist
+                    bestNeighbour=neighbour
+        
+            order.append(bestNeighbour)
+            unvisited.remove(bestNeighbour)
 
 
-  temp=totalDist(order)
+    
+        t=currT=0
+        while time.time()-startTime<1.9:
 
-  if shortestPath>temp:
-    shortestPath=temp
+            
+            t+=1
+            x,y=random.randint(0,n-1),random.randint(0,n-1)
 
- 
- while time.time()-startTime<1.9:
-  x,y=random.randint(0,n-1),random.randint(0,n-1)
+            if x==y:continue
 
-  if x==y:continue
+            seg1=getSegment(x,order)
+            seg2=getSegment(y,order)
 
-  seg1=getSegment(x,order)
-  seg2=getSegment(y,order)
+            distBefore=segmentDist(seg1) + segmentDist(seg2)
 
-  distBefore=segmentDist(seg1) + segmentDist(seg2)
+            seg1[1],seg2[1]=seg2[1],seg1[1]
 
-  seg1[1],seg2[1]=seg2[1],seg1[1]
+            if seg1[1]==seg1[2]:
+                seg1[2],seg2[0]=seg2[0],seg1[2]
+            elif seg1[1]==seg1[0]:
+                seg1[0],seg2[2]=seg2[2],seg1[0]
 
-  if seg1[1]==seg1[2]:
-   seg1[2],seg2[0]=seg2[0],seg1[2]
-  elif seg1[1]==seg1[0]:
-   seg1[0],seg2[2]=seg2[2],seg1[0]
+            distAfter=segmentDist(seg1) + segmentDist(seg2)
 
-  distAfter=segmentDist(seg1) + segmentDist(seg2)
+            if distAfter<distBefore:
 
-  if distAfter<distBefore:
-   order[x],order[y]=order[y],order[x]
+                currT=t
+                order[x],order[y]=order[y],order[x]
 
- for node in order:
-  print(node)
+            elif t-currT>4000:
+                break
+        
+        
+        temp=totalDist(order)
+
+        if shortestPath>temp:
+            shortestPath=temp
+            bestOrder=order[::]
+
+    for node in bestOrder:
+        print(node)
+    
