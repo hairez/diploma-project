@@ -6,7 +6,7 @@ REQUIRE_SAMPLE_REUSE=0
 
 . ../../testdata_tools/gen.sh
 
-use_solution randomPath.py
+use_solution 2-opt.py
 
 compile gen.py
 

@@ -18,15 +18,18 @@ for t in labels:
         currx,curry=map(int,str.split())
         x.append(currx)
         y.append(curry)
+    
+    k=1
 
     if t == "g4/004-sweden.in":
         plt.figure(figsize=(4.8,9.6))
-    elif t == "g4/004-sweden.in":
-        plt.figure(figsize=(6.4*2,4.8*2))
+    elif t == "g5/005-united_states.in":
+        plt.figure(figsize=(6.4*3,4.8*2))
+        k=10
     else:
         plt.figure(figsize=(6.4*2,4.8*2))
 
-    plt.scatter(x, y,s=1)
+    plt.scatter(x, y,s=k)
 
     plt.xlabel('x - axis')
 
