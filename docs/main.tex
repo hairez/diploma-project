@@ -149,8 +149,8 @@ When computer scientists want to compare different kinds of algorithms, they can
 
 \newline
 
-\subsubsection{Random Algorithm}\label{Dijkstras}
-The random algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. 
+\subsubsection{Random Generation Algorithm}\label{Random}
+The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. 
 
 \begin{algorithm}
 \caption{Algorithm that generates random paths}\label{Random Algorithm}
@@ -187,49 +187,41 @@ Furthermore, the original Dijkstra's algorithm's time complexity is dependent on
 
 originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random neighbors, it would become $O(nlog(n))$
 
-\subsubsection{Genetic Algorithm with Random Swapping}\label{Random Swapping}
+\subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-\subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
+\subsubsection{Self-improving Algorithm with 2-opt swapping}\label{2-opt swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-\subsubsection{Generation of Maps}\label{subsubsec1}
+\subsubsection{Maps}\label{maps}
 How does each map get generated?
 
 map4 Sweden: https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv  took the top 1000 or 10000 most populated cities in sweden
 
 map5: USA: https://simplemaps.com/data/us-cities. took the top populated 1000 or 10000 most populated cities in USA.
 
-\subsubsection{Integers vs floats}\label{subsubsec1}
+\subsubsection{Integers vs floats}\label{Int vs Float}
 Integers and floats are two common data types for numbers. Integers are used to store whole numbers, while floats are used to store decimal numerals. Computers are known to be very inefficient when it comes to handling float numbers.
 this is why all coordinates of the maps are integers, even though coordinates on a real map are not necessarily integers. 
 
 
 
 
-\section{Method}\label{sec2}
-Use different algorithms to solve the TSP in different maps (weighted undirected graphs).
+\section{Method}\label{Method}
+Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that are made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Dijkstra's algorithm$_{\ref{Dijkstras}}$, self-improving algorithm with random swapping$_{\ref{Random Swapping}}$, and self-improving algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Each map was tested with each algorithm $6$ times, which means that there were $6$ replicates of each combination of map and algorithm. Several replicates were made since randomness since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results can be compared across different maps, and if possible, a correlation could be found. 
+\noindent
+The constant variables of this method are the various maps, the time limit, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
 
 
+\subsection{Limitations}\label{Limitations}
+One limitation is the scope of algorithms used. This study only considers $4$ algorithms for solving the travelling salesman problem. However, there could be other algorithms that are not included in the study that could perform better in a similar time-constrained environment. Similarly, combinations of these algorithms are also possible to create and could in the same way also be a more optimal option than the algorithms used. 
+\noindent
+At the same time, the algorithms used in the study may require more fine-tuning on various parameters to achieve even more optimal performance. 
+\noindent
+Another limitation is the different maps used. Since only $10$ different maps are being considered here, it would not represent fully all possible scenarios. This should be taken into consideration before drawing any generalized conclusion from the results of these maps.
 
 
-Dependent: The length of the path
-Independent: the algorithm
-
-
-Constant variables: The maps and the max amount of time. Programming language: python
-
-The maps: 
-
-\subsection{Limitations}\label{subsec3}
-
-
-
-
-
-
-
-\section{Results}\label{sec3}
+\section{Results}\label{Results}
 
 Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text. Sample body text.
 
