@@ -190,8 +190,13 @@ originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random n
 \subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
+
+
 \subsubsection{Self-improving Algorithm with 2-opt swapping}\label{2-opt swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
+
+Triangle inequality?
+have pictures showing that two edges that cross each other are bad.
 
 \subsubsection{Maps}\label{maps}
 How does each map get generated?
@@ -385,16 +390,23 @@ Another limitation is the different maps used. Since only $10$ different maps ar
 \subsection{Generalized Results}\label{subsec1}
 which algorithm showed the best results overall?
 
+First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
+
+Random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. 
+
+Between the two self-improving algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. 
 
 \subsection{Specified Results }\label{subsec2}
 what algorithm could be good in what situation?
 
-Modified dijkstras works best when there is a clear path and there are many nodes close to each other that are teh closest. 
+Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples of the maps the modified Dijkstra's algorithm excels at are map 6 and map 7. 
 
-2-opt is generally good, but especially when it is common that crosses exist.
+2-opt is generally good, but especially on maps where it is common that crosses exist. Since 2-opt will generally make changes if the two chosen edges cross each other since swapping them would lead to a shorter path.
 
 
 \subsection{Evaluation and further research}\label{subsec3}
+
+further research should be conducted with:
 using $O(n^2)$ algorithms such as 
 greedy algorithm
 Christofides algorithm
