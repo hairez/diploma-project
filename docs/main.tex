@@ -15,6 +15,12 @@
 \usepackage{listings}%
 
 
+
+
+\usepackage{float}%make tables stay?
+
+
+
 \providecommand{\keywords}[1]{\textbf{\textit{Keywords: ---}} #1}%keywords
 
 \usepackage{parskip} %puts \noindent everywhere
@@ -190,6 +196,8 @@ originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random n
 \subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
+This algorithm starts off with a randomly generated path. After that, two nodes are randomly choosen and swapped. If this creates a longer path thanalculates the dista
+
 
 
 \subsubsection{Self-improving Algorithm with 2-opt swapping}\label{2-opt swapping}
@@ -229,8 +237,10 @@ Another limitation is the different maps used. Since only $10$ different maps ar
 
 \section{Results}\label{Results}
 
+Explain that the results are given in units of length. 
+Also make the best result on each map bold, and calculate the average for each algorithm on each map.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -245,7 +255,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -260,7 +270,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -275,7 +285,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -290,7 +300,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -305,7 +315,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
      \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -320,7 +330,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -335,7 +345,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -350,7 +360,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -365,7 +375,7 @@ Another limitation is the different maps used. Since only $10$ different maps ar
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
