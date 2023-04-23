@@ -75,7 +75,7 @@
 
 
 
-
+\newpage
 
 \abstract{\noindent The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
 
@@ -196,12 +196,14 @@ originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random n
 \subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-This algorithm starts off with a randomly generated path. After that, two nodes are randomly choosen and swapped. If this creates a longer path thanalculates the dista
+This algorithm starts off with a randomly generated path. After that, two nodes are randomly chosen. Using the current neighbors of those nodes it is possible to calculate the change in the length distance, if the nodes were swapped. If this creates a longer path than before, then the nodes are not swapped. However, if the change would make the path shorter, then the nodes are swapped.
 
 
 
 \subsubsection{Self-improving Algorithm with 2-opt swapping}\label{2-opt swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
+
+Similar to the self-imporving algorithm with random swapping, this algorithm also starts off wiht a randomly generated path. Then two random edges are randomly chosen and swapped. 
 
 Triangle inequality?
 have pictures showing that two edges that cross each other are bad.
@@ -211,7 +213,9 @@ How does each map get generated?
 
 map4 Sweden: https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv  took the top 1000 or 10000 most populated cities in sweden
 
-map5: https://developers.google.com/public-data/docs/canonical/states_csv 49 cities, without Hawaii, Alaska and Puerto Rico.
+map5: https://developers.google.com/public-data/docs/canonical/states_csv
+
+49 cities, without Hawaii, Alaska and Puerto Rico.
 
 
 \subsubsection{Integers vs floats}\label{Int vs Float}
@@ -239,6 +243,10 @@ Another limitation is the different maps used. Since only $10$ different maps ar
 
 Explain that the results are given in units of length. 
 Also make the best result on each map bold, and calculate the average for each algorithm on each map.
+
+
+
+
 
 \begin{table}[H]
     \centering
