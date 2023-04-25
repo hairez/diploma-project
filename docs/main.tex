@@ -196,6 +196,8 @@ originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random n
 \subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
+Similar to natural selection.
+
 This algorithm starts off with a randomly generated path. After that, two nodes are randomly chosen. Using the current neighbors of those nodes it is possible to calculate the change in the length distance, if the nodes were swapped. If this creates a longer path than before, then the nodes are not swapped. However, if the change would make the path shorter, then the nodes are swapped.
 
 
@@ -408,7 +410,7 @@ Also make the best result on each map bold, and calculate the average for each a
 \subsection{Generalized Results}\label{subsec1}
 which algorithm showed the best results overall?
 
-First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
+First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
 
 Random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. 
 
@@ -432,6 +434,7 @@ Simulated annealing.
 3 opt. or even Lin-Kernighan Heuristic algorithm
 Longer time-constraints?
 combination of these? For example start with a greedy solution, and then improve it by applying 3-opt.
+more maps with differnet shapes and distributions should be used.
 
 \section{Conclusion}\label{sec5}
 
