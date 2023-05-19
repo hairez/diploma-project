@@ -78,7 +78,7 @@
 
 
 \maketitle
-
+\thispagestyle{empty} 
 \newpage
 
 
@@ -87,7 +87,7 @@
 
 \keywords{travelling salesman problem, Euclidean distance, graph, Keyword4}
 
-
+\thispagestyle{empty} 
 \newpage
 
 \abstract{\noindent The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted. The diploma project examined several heuristic algorithms designed to solve the travelling salesman problem within graph theory. The algorithms aimed to identify the shortest path covering all points within a predetermined time limit on various datasets. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
@@ -96,11 +96,11 @@
 
 
 
-
+\thispagestyle{empty} 
 \newpage
 
 \tableofcontents
-
+\thispagestyle{empty} 
 \newpage
 
 
@@ -119,25 +119,23 @@ This is the problem statement of the classic problem called \textit{The travelli
 \end{figure}
 
 \noindent
-The travelling salesman problem could also be interpreted as a weighted undirected graph$_{\ref{undirected weighted graph}}$ with a given number of nodes. Each node is a city that the travelling salesman has to visit. The edges between each node have a specific value or length, which signifies the Euclidean distance between each pair of cities. 
+The travelling salesman problem could also be interpreted as a weighted undirected graph$_{\ref{undirected weighted graph}}$ with some number of nodes. Each node represents a city that the travelling salesman has to visit. The edges between each pair of nodes have a specific value or length, which signifies the Euclidean distance between that pair of cities. Given any $2$ cities, the distance from city A to city B is always the same as the distance from city B to city A.
 \newline
 Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete$_{\ref{NP-complete}}$ problem \cite{PAPADIMITRIOU1977}. 
 \newline
 Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
 \newline
-For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed, and then picking the shortest path out of all possible paths. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that have to be visited. 
+For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed, and then picking the shortest path out of all possible paths. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that are required to be visited. 
 \newline
-It is an NP-hard problem and there are a lot of different heuristic solutions. Some solutions might work better in some situations than others. In this research, different algorithms are going to be tested on different test cases within a set amount of time. The algorithms being tested in this paper are variations of the following algorithms: Dijkstra's algorithm, the Genetic algorithm with random swapping, and the Genetic algorithm with 2-opt swapping.
-
-contextualize the topic. What could the traveling salesman problem be used for? - Robots pathfinding, efficiency. drilling holes on a plane wood plank. 
-It is important to find a relatively fast approach that is both efficient in finding the most optimal path and in a short period of time, especially when a large amount of input is considered. 
-
+It is an NP-hard problem and there are a lot of different heuristic$_{\ref{Heuristic}}$ algorithms. Some algorithms are more efficient in some situations than others. In this research, different algorithms are going to be tested on different test cases within a set amount of time. The algorithms being tested in this paper are a random generation algorithm, a modified Dijkstra's algorithm, a genetic algorithm with random swapping, and a genetic algorithm with 2-opt swapping.
+\newline
+The relevance and application of the travelling salesman problem in the real world such as optimizing routes for delivery vehicles, robots, or public transportations to minimize the travel distances, reduce fuel costs, and improve overall efficiency. The travelling salesman problem could also be applied to more technical concepts, such as finding the most optimal way to drill a circuit board or finding the most efficient order for sequencing genetic material such as DNA. 
 
 \subsection{Aim}\label{Aim}
 The aim of this paper is to find the limits of different heuristic algorithms for solving the travelling salesman problem. 
 
 \subsection{Research Question}\label{RQ}
-What algorithm could find the shortest path in a weighted graph, in a set amount of time?
+What algorithm out of the random generation algorithm, Dijkstra's algorithm, random swapping algorithm, and the 2-opt swapping are most efficient in finding the shortest path in a weighted graph, in a set amount of time?
 
 
 
@@ -145,16 +143,25 @@ What algorithm could find the shortest path in a weighted graph, in a set amount
 
 \subsubsection{Notations and definitions}\label{Notation and definitions}
 
-In this section, a list of basic mathematical and computer scientific definitions and terms are explained. 
+This section explains a list of basic mathematical and computer scientific definitions and terms. 
 \newline
 
 \begin{enumerate}   %use the following to refer back to this part:
                     %$_{\ref{Polynomial}}$
  
-  \item \textit{The Euclidean distance} between two points $p_1=(x_1,y_1)$ and $p_2=(x_2,y_2)$ is defined as $\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. \label{Euclidean distance}
-  \item Undirected weighted graph is \label{undirected weighted graph}
-  \item A problem is \textit{NP-complete} if \label{NP-complete}
-  \item The \textit{factorial} of a given non-negative integer $n$ is denoted by $n!$. It is the product of all positive integers less than or equal to $n$. $$n! = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 2 \cdot 1 .$$\label{factorial}
+  \item The \textbf{\textit{Euclidean distance}} between two points $p_1=(x_1,y_1)$ and $p_2=(x_2,y_2)$ is defined as $\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. \label{Euclidean distance}
+  \item An \textbf{\textit{undirected weighted graph}} is a type of graph where edges connect vertices, and each edge has an associated weight or cost. In an undirected graph, the edges do not have a specified direction, meaning they can be traversed in both directions.\label{undirected weighted graph}
+  \item A problem is \textbf{\textit{NP-complete}} if no efficient algorithm is currently known that, could solve all instances of the problem in a reasonable amount of time. The term "complete" in NP-complete signifies that these problems are among the hardest problems in the class NP. If an efficient algorithm can be found for any NP-complete problem, it would imply that efficient algorithms exist for all problems in NP, which is considered highly unlikely. \label{NP-complete}
+  \item The \textbf{\textit{factorial}} of a given non-negative integer $n$ is denoted by "$n!$". It is the product of all positive integers less than or equal to $n$. $$n! = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 2 \cdot 1 .$$ \label{factorial}
+  \item The \textbf{\textit{triangle inequality}} states that for any three points A, B, and C in a space, the distance between A and C is always less than or equal to the sum of the distances between A and B, and between B and C. Another way to interpret the triangle inequality is by drawing a triangle, and observing how each side of the triangle will always be shorter or equal in length to the sum of the other $2$ sides. \label{Triangle Inequality}
+  
+    \begin{figure}[ht]
+     \centering
+     \includegraphics[scale=0.3]{docs/pictures/TriangleInequality.png}
+     \caption{Examples of the triangle inequality for triangles with the side-lengths x, y, and z. \cite{wiki:Triangle}}
+     \label{Figure:TriangleInequality}
+    \end{figure}
+    
 \end{enumerate}
 
 
@@ -163,10 +170,18 @@ In this section, a list of basic mathematical and computer scientific definition
 \subsubsection{Big O Notation}\label{Big O}
 When computer scientists want to compare different kinds of algorithms, they can describe the efficiency with a mathematical function that describes the estimated run time of the algorithm using Big O notations. Big O notations is a way of describing the time complexity of an algorithm, which refers to how long an algorithm takes to complete based on the size of its input. The big O notations show a huge difference when comparing the worst-case scenarios for each algorithm.
 \newline
- The "O" in Big O notation stands for "order of magnitude", which means that the function described grows a the same rate or within a constant factor as the function that is given. Hence when describing time complexities using big O notations, the coefficient becomes irrelevant. For example, an algorithm such as calculating the roots of a quadratic equation takes a constant time regardless of the input size and has a time complexity of $O(1)$, even though the algorithm could possibly perform more than $1$ operation. If the time complexity of an algorithm grows linearly with the size of the input, the time complexity of the algorithm would be $O(n)$. An example of an algorithm with this time complexity would be to calculate the sum of an array with $n$ integers since it is required to iterate through the whole array, as long as no other sum using this array has been pre-computed. Some other examples common time complexities are: $O(\log{n})$, $O(n \log{n})$, $O(n^2)$, $O(2^n)$, and $O(n!)$.
+The "O" in Big O notation stands for "order of magnitude", which means that the function described grows a the same rate or within a constant factor as the function that is given. Hence when describing time complexities using big O notations, the coefficient becomes irrelevant. For example, an algorithm such as calculating the roots of a quadratic equation takes a constant time regardless of the input size and has a time complexity of $O(1)$, even though the algorithm could possibly perform more than $1$ operation. If the time complexity of an algorithm grows linearly with the size of the input, the time complexity of the algorithm would be $O(n)$. An example of an algorithm with this time complexity would be to calculate the sum of an array with $n$ integers since it is required to iterate through the whole array, as long as no other sum using this array has been pre-computed. Some other examples of common time complexities are: $O(\log{n})$, $O(n \log{n})$, $O(n^2)$, $O(2^n)$, and $O(n!)$.
 
 
 \newline
+
+\subsubsection{Heuristic Algorithm}\label{Heuristic}
+It is crucial to find a relatively fast approach that is both efficient in finding the most optimal path and in a short period of time, especially when a large amount of input is considered. 
+
+
+\newline
+
+
 
 \subsubsection{Random Generation Algorithm}\label{Random}
 The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. 
@@ -442,7 +457,7 @@ Modified Dijkstra's algorithm works best out of these four when there is a clear
 further research should be conducted with:
 using $O(n^2)$ algorithms such as 
 greedy algorithm
-Christofides algorithm
+Christofides algorithm - guarantees to be within a factor of 3/2 of the optimal solution length \cite{Christofides}
 Simulated annealing.
 3 opt. or even Lin-Kernighan Heuristic algorithm
 Longer time-constraints?
