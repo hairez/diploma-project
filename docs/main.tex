@@ -168,18 +168,19 @@ This section explains a list of basic mathematical and computer scientific defin
 
 
 \subsubsection{Big O Notation}\label{Big O}
-When computer scientists want to compare different kinds of algorithms, they can describe the efficiency with a mathematical function that describes the estimated run time of the algorithm using Big O notations. Big O notations is a way of describing the time complexity of an algorithm, which refers to how long an algorithm takes to complete based on the size of its input. The big O notations show a huge difference when comparing the worst-case scenarios for each algorithm.
+When computer scientists want to compare different kinds of algorithms, they can describe the efficiency of the algorithm with a mathematical function that describes the estimated run time of the algorithm using Big O notation. Big O notation is a way of describing the time complexity of an algorithm, which refers to how long an algorithm takes to complete based on the size of its input. The big O notation shows a huge difference when comparing the worst-case scenarios for each algorithm.
 \newline
-The "O" in Big O notation stands for "order of magnitude", which means that the function described grows a the same rate or within a constant factor as the function that is given. Hence when describing time complexities using big O notations, the coefficient becomes irrelevant. For example, an algorithm such as calculating the roots of a quadratic equation takes a constant time regardless of the input size and has a time complexity of $O(1)$, even though the algorithm could possibly perform more than $1$ operation. If the time complexity of an algorithm grows linearly with the size of the input, the time complexity of the algorithm would be $O(n)$. An example of an algorithm with this time complexity would be to calculate the sum of an array with $n$ integers since it is required to iterate through the whole array, as long as no other sum using this array has been pre-computed. Some other examples of common time complexities are: $O(\log{n})$, $O(n \log{n})$, $O(n^2)$, $O(2^n)$, and $O(n!)$.
-
-
-\newline
-
-\subsubsection{Heuristic Algorithm}\label{Heuristic}
-It is crucial to find a relatively fast approach that is both efficient in finding the most optimal path and in a short period of time, especially when a large amount of input is considered. 
+The "O" in Big O notation stands for "order of magnitude", which means that the function described grows a the same rate or within a constant factor as the function that is given. Hence when describing time complexities using big O notation, the coefficient becomes irrelevant. For example, an algorithm such as calculating the roots of a quadratic equation takes a constant time regardless of the size of the coefficients and has a time complexity of $O(1)$, even though the algorithm could possibly perform more than $1$ operation. If the time complexity of an algorithm grows linearly with the size of the input, the time complexity of the algorithm would be $O(n)$. An example of an algorithm with a linear time complexity would be to calculate the sum of an array with $n$ integers. The algorithm would be required to iterate through the whole array, as long as no other sum using this array has been pre-computed. Some other examples of common time complexities are: $O(\log{n})$, $O(n \log{n})$, $O(n^2)$, $O(2^n)$, and $O(n!)$.
 
 
 \newline
+
+\subsubsection{Heuristic Algorithms}\label{Heuristic}
+When trying to solve a computational problem, it is crucial to find a relatively fast approach that is both efficient in finding the most optimal path and in a short period of time, especially when a large amount of input is considered. A common rule of thumb within competitive programming is to always use a program that performs less than $10^7$ operations.
+\newline
+As mentioned in the background, a brute force solution trying all possible paths for the travelling salesman problem would take an exceeding number of operations to compute. The time complexity of a brute force solution would be $O(n!)$, which means that it would be a sufficient enough algorithm if the number of cities would be less or equal to $10$, since $10! = 3628800 < 10^7$ and $11! > 10^7$. Any map with more than $10$ cities would take a lot more time before stopping to compute, while maps with more than $1000$ would not even stop computing after several years.
+\newline
+When the optimal solution is either unknown or computationally infeasible to find within a reasonable time frame, heuristic algorithms are used instead to provide an approximate solution. These algorithms prioritize efficiency and practicality over exact optimality. In this research, several different heuristic algorithms are used to repeatedly find the shortest path for the travelling salesman problem, and all the heuristic algorithms used will have a time complexity that is either $O(n)$ or $O(n \log{n})$. This also implies that maps with up to $10^6$ cities could be experimented on these algorithms without spending an unreasonable amount of time waiting for the algorithms to stop computing.
 
 
 
