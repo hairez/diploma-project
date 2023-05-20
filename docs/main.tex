@@ -107,7 +107,7 @@
 \section{Introduction}\label{Introduction}
 
 \subsection{Background}\label{Background}
-Consider a salesman that wants to visit a number of cities around the world. The salesman does not have to visit the cities in any particular order, but after the salesman has visited all the desired cities, the salesman has to return to the city it started out in. It is fairly straightforward how to find any path that works, but what is the path with the shortest Euclidean distance$_{\ref{Euclidean distance}}$ that visits all the cities and returns to the initial starting position?
+Consider a salesman that wants to visit a number of cities around the world. The salesman does not have to visit the cities in any particular order, but after the salesman has visited all the desired cities, the salesman has to return to the city it started out in. The salesman is also only allowed to visit each city once, with the exception of the city that it started out in, which the salesman is allowed to leave once and enter once. It is fairly straightforward how to find any path that works, but what is the path with the shortest Euclidean distance$_{\ref{Euclidean distance}}$ that visits all the cities and returns to the initial starting position?
 This is the problem statement of the classic problem called \textit{The travelling salesman problem}, but it is also called \textit{the travelling salesperson problem}, or just \textit{TSP} for short.
 
 
@@ -181,11 +181,18 @@ When trying to solve a computational problem, it is crucial to find a relatively
 As mentioned in the background, a brute force solution trying all possible paths for the travelling salesman problem would take an exceeding number of operations to compute. The time complexity of a brute force solution would be $O(n!)$, which means that it would be a sufficient enough algorithm if the number of cities would be less or equal to $10$, since $10! = 3628800 < 10^7$ and $11! > 10^7$. Any map with more than $10$ cities would take a lot more time before stopping to compute, while maps with more than $1000$ would not even stop computing after several years.
 \newline
 When the optimal solution is either unknown or computationally infeasible to find within a reasonable time frame, heuristic algorithms are used instead to provide an approximate solution. These algorithms prioritize efficiency and practicality over exact optimality. In this research, several different heuristic algorithms are used to repeatedly find the shortest path for the travelling salesman problem, and all the heuristic algorithms used will have a time complexity that is either $O(n)$ or $O(n \log{n})$. This also implies that maps with up to $10^6$ cities could be experimented on these algorithms without spending an unreasonable amount of time waiting for the algorithms to stop computing.
-
+\newline
+The heuristic algorithms compared to solve the travelling salesman problem in this research are:
+\begin{itemize}
+  \item Random generation algorithm.
+  \item A modified version of Dijkstra's Algorithm.
+  \item Self-improving Algorithm with Random Swapping.
+  \item Self-improving Algorithm with 2-opt swapping.
+\end{itemize}
 
 
 \subsubsection{Random Generation Algorithm}\label{Random}
-The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. 
+The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. The algorithm is similar to repeatedly throwing some amount of dice, and after each throw the sum of all the results is stored. The more dice there are, the smaller the probability for the throw to result in the highest number possible.
 
 \begin{algorithm}
 \caption{Algorithm that generates random paths}\label{Random Algorithm}
@@ -204,19 +211,18 @@ The random generation algorithm generates a random permutation of all possible n
 \end{algorithm}
 
 \noindent
-This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible node. 
+This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible city. One assumption could be made for the random generation algorithm, which is that it is very unlikely for it to find the most optimal path when there are a lot of cities. Especially when no other optimization is applied to make the path shorter. However, for maps with less number of cities, it is likely for the algorithm to randomly find the best path within a reasonable time limit. Similarly, for any number of cities, as long as enough time is given for the algorithm, it would eventually find the shortest path. Nevertheless, in that case, where the algorithms could run for an infinite amount of time, the brute force solution would always guarantee finding the shortest solution.
 
-\subsubsection{Dijkstra's Algorithm}\label{Dijkstras}
-Dijkstra's algorithm is a classic algorithm that for each step in the path, chooses the next unvisited node that is closest to that node. 
-
-%put original dijkstra's algorithm here
-
-
+\subsubsection{Modified Dijkstra's Algorithm}\label{Dijkstras}
+Dijkstra's algorithm is an algorithm used on weighted, directed graph with non-negative weights. Dijkstra's algorithm will find the shortest path between a source node and all other nodes in a weighted graph. The algorithm maintains a priority queue of nodes and repeatedly selects the node with the smallest known distance from the source. It then updates the distances of its neighboring nodes, considering the weights of the edges. This process continues until all nodes have been visited, and the shortest path from the source to each node is determined. It can find a relatively short path within a reasonable time limit, but it is not guaranteed it will find the shortest path. In some way, Dijkstra's algorithm could be visualized as always picking the shortest path between two given nodes in the graph. Furthermore, the original Dijkstra's algorithm is used on a directed graph, starting from a source node and ending on any other node in the graph. However, that is not the case of the travelling salesman problem.
+\noindent
+A modified version of Dijkstra's algorithm could be applied to the travelling salesman problem instead. Given a starting node, iterate through all other unvisited nodes and find the shortest distance. This process is repeated on the node that had the shortest distance from the previous node until all nodes have been visited. 
+\noindent
 It might seem that this approach will always find the shortest path, however, there are cases where this approach does not do that. 
 
 %show example of where dijkstra's algorithm doesn't work
 
-Furthermore, the original Dijkstra's algorithm's time complexity is dependent on the number of edges that the graph has, which in this case the number of edges would be exactly $\frac{n \cdot (n-1)}{2}$. For that reason, the time complexity of the mentioned algorithm is $O(n^2)$.
+Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. 
 
 
 
@@ -242,9 +248,9 @@ have pictures showing that two edges that cross each other are bad.
 \subsubsection{Maps}\label{maps}
 How does each map get generated?
 
-map4 Sweden: https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv  took the top 1000 or 10000 most populated cities in sweden
+map4 Sweden: \href{https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv}{github}  took the top 1000 or 10000 most populated cities in sweden
 
-map5: https://developers.google.com/public-data/docs/canonical/states_csv
+map5: \href{https://developers.google.com/public-data/docs/canonical/states_csv}{dev google}
 
 49 cities, without Hawaii, Alaska and Puerto Rico.
 
