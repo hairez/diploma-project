@@ -13,7 +13,7 @@
 \usepackage{algorithmicx}%
 \usepackage{algpseudocode}%
 \usepackage{listings}%
-
+\usepackage{tikz}%draw graphs
 
 
 
@@ -208,8 +208,8 @@ The random generation algorithm generates a random permutation of all possible n
         \State $bestPath \gets currPath$
     \EndIf
 \EndWhile
-\State $\textbf{Print } bestOrder $
-\State $\textbf{Print } bestPath $
+\State $\textbf{print } bestOrder $
+\State $\textbf{print } bestPath $
 
 \end{algorithmic}
 \end{algorithm}
@@ -218,7 +218,7 @@ The random generation algorithm generates a random permutation of all possible n
 This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible city. One assumption could be made for the random generation algorithm, which is that it is very unlikely for it to find the most optimal path when there are a lot of cities. Especially when no other optimization is applied to make the path shorter. However, for maps with less number of cities, it is likely for the algorithm to randomly find the best path within a reasonable time limit. Similarly, for any number of cities, as long as enough time is given for the algorithm, it would eventually find the shortest path. Nevertheless, in that case, where the algorithms could run for an infinite amount of time, the brute force solution would always guarantee to find the shortest solution.
 
 \subsubsection{Modified Dijkstra's Algorithm}\label{Dijkstras}
-Dijkstra's algorithm is an algorithm used on weighted, directed graph with non-negative weights. Dijkstra's algorithm will find the shortest path between a source node and all other nodes in a weighted graph. The algorithm maintains a priority queue of nodes and repeatedly selects the node with the smallest known distance from the source. It then updates the distances of its neighboring nodes, considering the weights of the edges. This process continues until all nodes have been visited, and the shortest path from the source to each node is determined. It can find a relatively short path within a reasonable time limit, but it is not guaranteed to find the shortest path. In some way, Dijkstra's algorithm could be visualized as always picking the shortest path between two given nodes in the graph. Furthermore, the original Dijkstra's algorithm is used on a directed graph, starting from a source node and ending on any other node in the graph. However, that is not the case of the travelling salesman problem.
+Dijkstra's algorithm is an algorithm used on weighted, directed graphs with non-negative weights. Dijkstra's algorithm will find the shortest path between a source node and all other nodes in a weighted graph. The algorithm maintains a priority queue of nodes and repeatedly selects the node with the smallest known distance from the source. It then updates the distances of its neighboring nodes, considering the weights of the edges. This process continues until all nodes have been visited, and the shortest path from the source to each node is determined. It can find a relatively short path within a reasonable time limit, but it is not guaranteed to find the shortest path. In some way, Dijkstra's algorithm could be visualized as always picking the shortest path between two given nodes in the graph. Furthermore, the original Dijkstra's algorithm is used on a directed graph, starting from a source node and ending on any other node in the graph. However, that is not the case of the travelling salesman problem.
 
 \noindent
 A modified version of Dijkstra's algorithm could be applied to the travelling salesman problem instead. Given a starting node, iterate through all other unvisited nodes and find the shortest distance. This process is repeated on the node that had the shortest distance from the previous node until all nodes have been visited. 
@@ -233,7 +233,7 @@ It might seem that this approach will always find the shortest path, however, th
      \label{Figure:CounterExampleDijkstras}
 \end{figure}
 \noindent
-In for example figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
+For example in figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
 
 \noindent
 Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_\ref{logarithm}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
@@ -282,8 +282,8 @@ Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(
     \EndIf
 \EndWhile
 
-\State $\textbf{Print } bestOrder $
-\State $\textbf{Print } bestPath $
+\State $\textbf{print } bestOrder $
+\State $\textbf{print } bestPath $
 
 \end{algorithmic}
 \end{algorithm}
@@ -297,31 +297,220 @@ Undeniably, by only checking with $\log{n}$ random neighbors would not give an a
 
 
 \subsubsection{Genetic Algorithm with Random Swapping}\label{Random Swapping}
-Genetic algorithms are used to iteratively improve any solution. 
-algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
+Genetic algorithms can be used as general-purpose optimization algorithms. They are inspired by the process of natural selection and genetics, and they are widely used for solving optimization problems in various domains. Some common uses of genetic algorithms are in machine learning, neural networks, and engineering to find the most optimal parameters for different designs. \cite{YANG202191} Other than that, they can also be used in combinatorial optimization problems such as the travelling salesman problem. 
 
-Similar to natural selection.
+\noindent
+The way a genetic algorithm commonly function is similar to the principles of evolution. The algorithm starts by creating a population with several potential solutions to the problem, where each solution could be represented as a set of parameters or even a chromosome. By applying a fitness function to each individual solution in the population, each solution can be evaluated on how well it can solve the problem. In the next generation of solutions, the solutions with the best fitness from the previous generation are chosen to be the parents of the new solutions. Mutations of the parents will be created, at the same time as the worse performing solutions will be removed from the population. This will be repeated, which results in a population consisting of several high-performing solutions. 
 
-This algorithm starts off with a randomly generated path. After that, two nodes are randomly chosen. Using the current neighbors of those nodes it is possible to calculate the change in the length distance, if the nodes were swapped. If this creates a longer path than before, then the nodes are not swapped. However, if the change would make the path shorter, then the nodes are swapped.
+\noindent
+The version of the genetic algorithm used in this research will essentially use the same principle as the one described. This genetic algorithm with random swapping starts off with a randomly generated path. After that, two cities in this path will be repeatedly randomly chosen. Using the current neighbors of those cities it is possible to calculate the change in the distance, if the nodes were to be swapped. If this creates a longer path than before, then the nodes are not swapped. However, if the change would make the path shorter, then the nodes are swapped. This repeats until no improvements have been made after 4000 randomly chosen pairs of cities.
 
+\noindent
+It is even possible to evaluate if the change would benefit the path can be done in a constant number of operations because it is only necessary to compare the neighboring cities of the two randomly chosen cities.
+\begin{figure}[ht]
+     \centering
+     \begin{tikzpicture}  
+  [scale=.9,auto=center,every node/.style={circle,fill=blue!20}] % here, node/.style is the style pre-defined, that will be the default layout of all the nodes. You can also create different forms for different nodes.  
+    \centering 
 
+    \node (a0) at (0,3)     {0};  
+    \node (a1) at (0,5)     {1};
+    \node (a2) at (1,7)     {2};  
+    \node (a6) at (3,7)     {3};  
+    \node (a4) at (5,6)     {4};  
+    \node (a5) at (6,4)     {5};  
+    \node (a3) at (4,3)     {6};
+
+    \draw (a0) -- (a1);
+    \draw (a1) -- (a2);  
+    \draw (a2) -- (a3);  
+    \draw (a3) -- (a4);  
+    \draw (a4) -- (a5);  
+    \draw (a5) -- (a6);  
+    \draw (a6) -- (a0);
+
+    \draw [-stealth](6.5,5) -- (7,5);
+
+    \node (b0) at (8,3)     {0};  
+    \node (b1) at (8,5)     {1};
+    \node (b2) at (9,7)     {2};  
+    \node (b3) at (11,7)     {3};  
+    \node (b4) at (13,6)     {4};  
+    \node (b5) at (14,4)     {5};  
+    \node (b6) at (12,3)     {6};
+
+    \draw (b0) -- (b1);
+    \draw (b1) -- (b2);  
+    \draw (b2) -- (b3);  
+    \draw (b3) -- (b4);  
+    \draw (b4) -- (b5);  
+    \draw (b5) -- (b6);  
+    \draw (b6) -- (b0);  
+  
+\end{tikzpicture} 
+     \caption{Example of a path that has been improved by swapping the order of two cities.}
+     \label{Figure:Swapping}
+\end{figure}
+
+\noindent
+In figure \ref{Figure:Swapping}, the order of city $3$ and city $6$ has been swapped. Notice how the edges $0 \rightarrow 1$, $1 \rightarrow 2$, $4 \rightarrow 5$ remain unchanged. The reason for that is that only city $3$ and city $6$ would get affected by the swap, which means that only the edges connected to the cities being swapped have to be considered. This also implies that, if the sum of the lengths of the edges affected has decreased, it would mean that the swap leads to a shorter path.
+
+ 
+
+\begin{algorithm}[H]
+\caption{Random Swapping}\label{Random Algorithm}
+\begin{algorithmic}
+
+\While{Less than 2 seconds has passed}
+    \State $currOrder \gets $ random permutation of the $n$ nodes
+
+    \State $steps \gets 0$ \Comment{\textcolor{blue}{keeps track of the number of times cities has been compared without any improvements}}
+
+    \While{Less than 2 seconds has passed}
+        \State $steps \gets steps + 1$
+        \State $x \gets $ random number from 0 to n-1 \Comment{\textcolor{blue}{index of a random city in $currOrder$}}
+        \State $y \gets $ random number from 0 to n-1
+
+        \State $distBefore \gets segmentDist(x) + segmentDist(y)$ \Comment{\textcolor{blue}{$segmentDist(x)$  returns the distance from the city in $currOrder$ before $x$ to $x$ + distance from $x$ to the city in $currOrder$ after $x$}}
+
+        \State $distAfter \gets swappedDist(x,y) + segmentDist(y,x)$ \Comment{\textcolor{blue}{$swappedDist(x,y)$  returns the distance from the city in $currOrder$ before $x$ to $y$ + distance from $y$ to the city in $currOrder$ after $x$}}
+
+        \If{$distAfter < distBefore$}
+            \State $steps \gets 0$
+            \State $currOrder[x],currOrder[y] \gets currOrder[y],currOrder[x]$ \Comment{\textcolor{blue}{swap index $x$ and $y$}}
+        \ElsIf{$steps > 4000$}
+            \State \textbf{break}
+        \EndIf
+    \EndWhile
+
+    \State $currPath \gets calculatePath(currOrder)$
+    \If{$bestPath > currPath$}
+        \State $bestOrder \gets currOrder$
+        \State $bestPath \gets currPath$
+    \EndIf
+\EndWhile
+
+\State $\textbf{print } bestOrder $
+\State $\textbf{print } bestPath $
+
+\end{algorithmic}
+\end{algorithm}
+
+\noindent
+The algorithm required $O(n)$ to generate a random permutation of the cities. After that it only performs a constant number of operations for each swap, which means $O(1)$ for each evaluation or swap. This repeats until 2 seconds have gone by.
+
+\noindent
+There are many advantages to a genetic algorithm since it will continuously try to improve a given solution. However, at some point, it will stop improving, since it will have reached a local optimum, which means that there are no other improvements that could be made by only swapping two cities. Eventually, it would require a bigger modification in the path for the path to become even shorter, which also implies that this algorithm cannot guarantee the optimal solution for any map either. \cite{YANG202191}
 
 \subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
-algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
+The genetic algorithm with 2-opt swapping is another genetic algorithm, but instead of swapping two random nodes, it will swap two random edges. It is similar to the genetic algorithm with random swapping$_\ref{Random Swapping}$, since this algorithm also starts off with a randomly generated path. Afterward, two edges are repeatedly randomly chosen. Using the nodes the edges are connected to, the change in distance can be simulated and evaluated. If this creates a longer path compared to before, then the edges are not swapped. However, if the change would make the path shorter, then the edges are swapped. This also repeats until no improvements have been made after 4000 randomly chosen pairs of edges.
 
-Similar to the Genetic algorithm with random swapping, this algorithm also starts off wiht a randomly generated path. Then two random edges are randomly chosen and swapped. 
 
-Triangle inequality?
-have pictures showing that two edges that cross each other are bad.
+\begin{figure}[ht]
+     \centering
+     \begin{tikzpicture}  
+  [scale=.9,auto=center,every node/.style={circle,fill=blue!20}] % here, node/.style is the style pre-defined, that will be the default layout of all the nodes. You can also create different forms for different nodes.  
+    \centering 
+
+    \node (a0) at (0,3)     {0};  
+    \node (a1) at (0,5)     {1};
+    \node (a2) at (1,7)     {2};  
+    \node (a3) at (3,7)     {3};  
+    \node (a4) at (5,6)     {4};  
+    \node (a5) at (6,4)     {5};  
+    \node (a6) at (4,3)     {6};
+
+    \draw (a0) -- (a1);
+    \draw (a1) -- (a2);  
+    \draw (a2) -- (a5);  
+    \draw (a3) -- (a4);  
+    \draw (a4) -- (a5);  
+    \draw (a3) -- (a6);  
+    \draw (a6) -- (a0); 
+
+    \draw [-stealth](6.5,5) -- (7,5);
+
+    \node (b0) at (8,3)     {0};  
+    \node (b1) at (8,5)     {1};
+    \node (b2) at (9,7)     {2};  
+    \node (b3) at (11,7)     {3};  
+    \node (b4) at (13,6)     {4};  
+    \node (b5) at (14,4)     {5};  
+    \node (b6) at (12,3)     {6};
+
+    \draw (b0) -- (b1);
+    \draw (b1) -- (b2);  
+    \draw (b2) -- (b3);  
+    \draw (b3) -- (b4);  
+    \draw (b4) -- (b5);  
+    \draw (b5) -- (b6);  
+    \draw (b6) -- (b0);  
+  
+\end{tikzpicture} 
+     \caption{Example of a path that has been improved by replacing two of the edges.}
+     \label{Figure:2opt}
+\end{figure}
+
+\noindent
+This algorithm is called 2-opt because two edges are randomly chosen, as opposed to another algorithm called 3-opt, where three edges are randomly chosen. The "opt" in 2-opt and 3-opt stands for optimization. 
+
+\noindent
+ONLY ONE WAY TO REPLACE
+
+\noindent
+It can also be proven that whenever two edges cross each other, it will always be shorter to swap the edges. This can be proven using the triangle inequality$_\ref{Triangle Inequality}$, since when two edges cross each other, two triangles that are missing one side each are created. By replacing the edges, the existing sides of the triangle will be replaced by the non-existing sides, which will guarantee a shorter path, if not equal length. This is shown in figure \ref{Figure:triangleIneq2opt}.
+
+\begin{figure}[ht]
+     \centering
+     \begin{tikzpicture}  
+  [scale=.9,auto=center,every node/.style={circle,fill=blue!20}] % here, node/.style is the style pre-defined, that will be the default layout of all the nodes. You can also create different forms for different nodes.  
+    \centering 
+
+
+    \node (a2) at (1,7)     {2};  
+    \node (a3) at (3,7)     {3};   
+
+    \draw (a2) -- (57/17,5.588235);  
+    \draw (a3) -- (57/17,5.588235);  
+
+
+    \draw [-stealth](5.5,6) -- (5.5+0.5,6);
+
+    \node (b2) at (9,7)     {2};  
+    \node (b3) at (11,7)     {3};   
+
+    \draw (b2) -- (b3);  
+  
+\end{tikzpicture} 
+     \caption{Example of how the triangle inequality could be visualized when edges are replaced in a path.}
+     \label{Figure:triangleIneq2opt}
+\end{figure}
+
+\noindent
+In other words, if there are edges that cross each other, they would eventually be replaced by more optimal edges that make the total path shorter.
+
+
+
+pseudo code
+
+
+
+
+similar, but will have a higher constant factor since it will iterate through more nodes and checks. For the same reason, 2-opt is in some cases more efficient compared to 3-opt, since if three edges are considered, there are many more ways to replace the edges.
+
+
+ algorithm that requires $O(n)$. however for each swap, it takes $O(n)$. run until 2 seconds has gone by.
+
+
 
 \subsubsection{Maps}\label{maps}
 How does each map get generated?
 
-map4 Sweden: \href{https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv}{github}  took the top 1000 or 10000 most populated cities in sweden
+map4 Sweden: \href{https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv}{github}  took the top 1000 or 10000 most populated cities in Sweden
 
 map5: \href{https://developers.google.com/public-data/docs/canonical/states_csv}{dev google}
 
-49 cities, without Hawaii, Alaska and Puerto Rico.
+49 cities, without Hawaii, Alaska, and Puerto Rico.
 
 
 \subsubsection{Integers vs floats}\label{Int vs Float}
