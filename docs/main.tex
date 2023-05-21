@@ -188,26 +188,28 @@ The heuristic algorithms compared to solve the travelling salesman problem in th
 \begin{itemize}
   \item Random generation algorithm.
   \item A modified version of Dijkstra's Algorithm.
-  \item Self-improving Algorithm with Random Swapping.
-  \item Self-improving Algorithm with 2-opt swapping.
+  \item Genetic Algorithm with Random Swapping.
+  \item Genetic Algorithm with 2-opt swapping.
 \end{itemize}
 
 
 \subsubsection{Random Generation Algorithm}\label{Random}
 The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. The algorithm is similar to repeatedly throwing some amount of dice, and after each throw the sum of all the results is stored. The more dice there are, the smaller the probability for the throw to result in the highest number possible.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Random path generator}\label{Random Algorithm}
 \begin{algorithmic}
 
 \While{Less than 2 seconds has passed}
-\State $order \gets $ random permutation of the $n$ nodes
-\State $currPath \gets calculatePath(order)$
-\If{$bestPath > currPath$}
-\State $bestOrder \gets order$
-\State $bestPath \gets currPath$
-\EndIf
+    \State $order \gets $ random permutation of the $n$ nodes
+    \State $currPath \gets calculatePath(order)$ \Comment{\textcolor{blue}{$calculatePath(array)$ returns the length of the whole path}}
+    \If{$bestPath > currPath$}
+        \State $bestOrder \gets order$
+        \State $bestPath \gets currPath$
+    \EndIf
 \EndWhile
+\State $\textbf{Print } bestOrder $
+\State $\textbf{Print } bestPath $
 
 \end{algorithmic}
 \end{algorithm}
@@ -236,31 +238,66 @@ In for example figure \ref{Figure:CounterExampleDijkstras}, always choosing the 
 \noindent
 Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_\ref{logarithm}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Modified Dijkstra's algorithm for $\log{n}$ neighbors}\label{Random Algorithm}
 \begin{algorithmic}
 
 \While{Less than 2 seconds has passed}
-\State $order \gets $ random permutation of the $n$ nodes
-\State $currPath \gets calculatePath(order)$
-\If{$bestPath > currPath$}
-\State $bestOrder \gets order$
-\State $bestPath \gets currPath$
-\EndIf
+    \State $currOrder \gets $ empty list 
+    \State $unvisted \gets $ random permutation of the $n$ nodes \Comment{\textcolor{blue}{$unvisited$ is a list}}
+    \State $currOrder.append(unvisited.pop())$
+
+    \For {$i = 0 \text{ to } n-1 $} 
+        \State $bestNeighbor \gets unvisited[-1]$ 
+        \State $closest \gets \infty $
+        \State $focus \gets $ empty list  
+
+
+        \State $focusSize \gets min(length(unvisited),ceil(\log{n}))$ \Comment{\textcolor{blue}{All remaining neighbors will be checked if there are less than $\log{n}$ neighbors left}}
+
+        \For {$j = 0 \text{ to } focusSize $}
+            \State $focus.append(unvisited.pop())$ \Comment{\textcolor{blue}{$focus$ will contain the $\log{n}$ random neighbors}}
+        \EndFor
+
+        \For {$j = 0 \text{ to } focusSize $}
+            \State $currDist \gets distance(currOrder[-1],focus[j])$ 
+            \If{currDist < closest}
+                \State $closest \gets currDist$
+                \State $bestNeighbor \gets focus[j]$
+            \EndIf
+        \EndFor
+
+        \State $currOrder.append(bestNeighbor)$
+
+        \For {$j = 0 \text{ to } focusSize $}
+            \If{$focus[j] != bestNeighbor$}
+                \State $unvisited.append(focus[j])$ \Comment{\textcolor{blue}{Put back all the unvisited cities to $unvisited$}}
+            \EndIf
+        \EndFor
+    \EndFor
+    \State $currPath \gets calculatePath(currOrder)$
+    \If{$bestPath > currPath$}
+        \State $bestOrder \gets currOrder$
+        \State $bestPath \gets currPath$
+    \EndIf
 \EndWhile
+
+\State $\textbf{Print } bestOrder $
+\State $\textbf{Print } bestPath $
 
 \end{algorithmic}
 \end{algorithm}
 
 
 \noindent
-Undeniably, by only checking with $O(n\log{n})$ random neighbors would not give as optimal an answer as checking with all neighbors. However, on a map with a lot of cities where many cities are close to each other, the probability is very high for the algorithm to pick one of those close neighbors as one of the $\log{n}$ random neighbors, which would give a result very similar to the algorithm that checks with all neighbors.
+Undeniably, by only checking with $\log{n}$ random neighbors would not give an as optimal answer as checking with all neighbors. However, on a map with a lot of cities where many cities share the same a similar distance to another city, the probability is very high for the algorithm to pick one of those neighbors as one of the $\log{n}$ random neighbors, which would give a result very similar to the algorithm that checks with all neighbors.
 
 
 
 
 
-\subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
+\subsubsection{Genetic Algorithm with Random Swapping}\label{Random Swapping}
+Genetic algorithms are used to iteratively improve any solution. 
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
 Similar to natural selection.
@@ -269,10 +306,10 @@ This algorithm starts off with a randomly generated path. After that, two nodes 
 
 
 
-\subsubsection{Self-improving Algorithm with 2-opt swapping}\label{2-opt swapping}
+\subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
 
-Similar to the self-imporving algorithm with random swapping, this algorithm also starts off wiht a randomly generated path. Then two random edges are randomly chosen and swapped. 
+Similar to the Genetic algorithm with random swapping, this algorithm also starts off wiht a randomly generated path. Then two random edges are randomly chosen and swapped. 
 
 Triangle inequality?
 have pictures showing that two edges that cross each other are bad.
@@ -295,7 +332,7 @@ this is why all coordinates of the maps are integers, even though coordinates on
 
 
 \section{Method}\label{Method}
-Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that are made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, self-improving algorithm with random swapping$_{\ref{Random Swapping}}$, and self-improving algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Each map was tested with each algorithm $6$ times, which means that there were $6$ replicates of each combination of map and algorithm. Several replicates were made since randomness since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results can be compared across different maps, and if possible, a correlation could be found. 
+Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that are made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, Genetic algorithm with random swapping$_{\ref{Random Swapping}}$, and Genetic algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Each map was tested with each algorithm $6$ times, which means that there were $6$ replicates of each combination of map and algorithm. Several replicates were made since randomness since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results can be compared across different maps, and if possible, a correlation could be found. 
 \noindent
 The constant variables of this method are the various maps, the time limit, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
 
@@ -481,7 +518,7 @@ First of all, when the number of cities is small enough, all cities will find th
 
 Random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. 
 
-Between the two self-improving algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. 
+Between the two Genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. 
 
 \subsection{Specified Results }\label{subsec2}
 what algorithm could be good in what situation?
@@ -503,6 +540,7 @@ Longer time-constraints?
 combination of these? For example start with a greedy solution, and then improve it by applying 3-opt.
 more maps with differnet shapes and distributions should be used.
 
+constantfactors of the algorithms could definitely be improved.
 \section{Conclusion}\label{sec5}
 
 
