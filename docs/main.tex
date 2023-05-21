@@ -152,7 +152,9 @@ This section explains a list of basic mathematical and computer scientific defin
   \item The \textbf{\textit{Euclidean distance}} between two points $p_1=(x_1,y_1)$ and $p_2=(x_2,y_2)$ is defined as $\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$. \label{Euclidean distance}
   \item An \textbf{\textit{undirected weighted graph}} is a type of graph where edges connect vertices, and each edge has an associated weight or cost. In an undirected graph, the edges do not have a specified direction, meaning they can be traversed in both directions.\label{undirected weighted graph}
   \item A problem is \textbf{\textit{NP-complete}} if no efficient algorithm is currently known that, could solve all instances of the problem in a reasonable amount of time. The term "complete" in NP-complete signifies that these problems are among the hardest problems in the class NP. If an efficient algorithm can be found for any NP-complete problem, it would imply that efficient algorithms exist for all problems in NP, which is considered highly unlikely. \label{NP-complete}
-  \item The \textbf{\textit{factorial}} of a given non-negative integer $n$ is denoted by "$n!$". It is the product of all positive integers less than or equal to $n$. $$n! = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 2 \cdot 1 .$$ \label{factorial}
+  \item The \textbf{\textit{factorial}} of a given non-negative integer $n$ is denoted by "$n!$". It is the product of all positive integers less than or equal to $n$.$$n! = n \cdot (n-1) \cdot (n-2) \cdot ... \cdot 2 \cdot 1 .$$\label{factorial}
+  \item A \textbf{\textit{logarithm}} is a mathematical function that represents the exponent to which a given base must be raised to produce a specific number. In other words, it provides a way to reverse the process of exponentiation. $$b^x=a \Leftrightarrow \log_b{a}=x.$$ In computer science, logarithms with base 2 are commonly used because they align with binary representation and the binary logarithm.  In this paper, whenever logarithms are mentioned, they will always be considered to be with base 2.\label{logarithm}
+  
   \item The \textbf{\textit{triangle inequality}} states that for any three points A, B, and C in a space, the distance between A and C is always less than or equal to the sum of the distances between A and B, and between B and C. Another way to interpret the triangle inequality is by drawing a triangle, and observing how each side of the triangle will always be shorter or equal in length to the sum of the other $2$ sides. \label{Triangle Inequality}
   
     \begin{figure}[ht]
@@ -195,7 +197,7 @@ The heuristic algorithms compared to solve the travelling salesman problem in th
 The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. The algorithm is similar to repeatedly throwing some amount of dice, and after each throw the sum of all the results is stored. The more dice there are, the smaller the probability for the throw to result in the highest number possible.
 
 \begin{algorithm}
-\caption{Algorithm that generates random paths}\label{Random Algorithm}
+\caption{Random path generator}\label{Random Algorithm}
 \begin{algorithmic}
 
 \While{Less than 2 seconds has passed}
@@ -211,22 +213,52 @@ The random generation algorithm generates a random permutation of all possible n
 \end{algorithm}
 
 \noindent
-This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible city. One assumption could be made for the random generation algorithm, which is that it is very unlikely for it to find the most optimal path when there are a lot of cities. Especially when no other optimization is applied to make the path shorter. However, for maps with less number of cities, it is likely for the algorithm to randomly find the best path within a reasonable time limit. Similarly, for any number of cities, as long as enough time is given for the algorithm, it would eventually find the shortest path. Nevertheless, in that case, where the algorithms could run for an infinite amount of time, the brute force solution would always guarantee finding the shortest solution.
+This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible city. One assumption could be made for the random generation algorithm, which is that it is very unlikely for it to find the most optimal path when there are a lot of cities. Especially when no other optimization is applied to make the path shorter. However, for maps with less number of cities, it is likely for the algorithm to randomly find the best path within a reasonable time limit. Similarly, for any number of cities, as long as enough time is given for the algorithm, it would eventually find the shortest path. Nevertheless, in that case, where the algorithms could run for an infinite amount of time, the brute force solution would always guarantee to find the shortest solution.
 
 \subsubsection{Modified Dijkstra's Algorithm}\label{Dijkstras}
-Dijkstra's algorithm is an algorithm used on weighted, directed graph with non-negative weights. Dijkstra's algorithm will find the shortest path between a source node and all other nodes in a weighted graph. The algorithm maintains a priority queue of nodes and repeatedly selects the node with the smallest known distance from the source. It then updates the distances of its neighboring nodes, considering the weights of the edges. This process continues until all nodes have been visited, and the shortest path from the source to each node is determined. It can find a relatively short path within a reasonable time limit, but it is not guaranteed it will find the shortest path. In some way, Dijkstra's algorithm could be visualized as always picking the shortest path between two given nodes in the graph. Furthermore, the original Dijkstra's algorithm is used on a directed graph, starting from a source node and ending on any other node in the graph. However, that is not the case of the travelling salesman problem.
+Dijkstra's algorithm is an algorithm used on weighted, directed graph with non-negative weights. Dijkstra's algorithm will find the shortest path between a source node and all other nodes in a weighted graph. The algorithm maintains a priority queue of nodes and repeatedly selects the node with the smallest known distance from the source. It then updates the distances of its neighboring nodes, considering the weights of the edges. This process continues until all nodes have been visited, and the shortest path from the source to each node is determined. It can find a relatively short path within a reasonable time limit, but it is not guaranteed to find the shortest path. In some way, Dijkstra's algorithm could be visualized as always picking the shortest path between two given nodes in the graph. Furthermore, the original Dijkstra's algorithm is used on a directed graph, starting from a source node and ending on any other node in the graph. However, that is not the case of the travelling salesman problem.
+
 \noindent
 A modified version of Dijkstra's algorithm could be applied to the travelling salesman problem instead. Given a starting node, iterate through all other unvisited nodes and find the shortest distance. This process is repeated on the node that had the shortest distance from the previous node until all nodes have been visited. 
+
 \noindent
 It might seem that this approach will always find the shortest path, however, there are cases where this approach does not do that. 
 
-%show example of where dijkstra's algorithm doesn't work
+\begin{figure}[ht]
+     \centering
+     \includegraphics[scale=0.5]{docs/pictures/dijkstras.png}
+     \caption{Example of a graph where the modified Dijkstra's algorithm would not find the shortest path.}
+     \label{Figure:CounterExampleDijkstras}
+\end{figure}
+\noindent
+In for example figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
 
-Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. 
+\noindent
+Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_\ref{logarithm}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
+
+\begin{algorithm}
+\caption{Modified Dijkstra's algorithm for $\log{n}$ neighbors}\label{Random Algorithm}
+\begin{algorithmic}
+
+\While{Less than 2 seconds has passed}
+\State $order \gets $ random permutation of the $n$ nodes
+\State $currPath \gets calculatePath(order)$
+\If{$bestPath > currPath$}
+\State $bestOrder \gets order$
+\State $bestPath \gets currPath$
+\EndIf
+\EndWhile
+
+\end{algorithmic}
+\end{algorithm}
+
+
+\noindent
+Undeniably, by only checking with $O(n\log{n})$ random neighbors would not give as optimal an answer as checking with all neighbors. However, on a map with a lot of cities where many cities are close to each other, the probability is very high for the algorithm to pick one of those close neighbors as one of the $\log{n}$ random neighbors, which would give a result very similar to the algorithm that checks with all neighbors.
 
 
 
-originally a $O(n^2)$ algorithm. however, by only comparing the log2(n) random neighbors, it would become $O(nlog(n))$
+
 
 \subsubsection{Self-improving Algorithm with Random Swapping}\label{Random Swapping}
 algorithm that requires $O(n)$. however for each swap, it takes $O(1)$. run until 2 seconds has gone by.
