@@ -54,13 +54,12 @@
 %%\unnumbered% uncomment this for unnumbered level heads
 
 \usepackage{geometry}
- \geometry{
+\geometry{
  a4paper,
  total={170mm,257mm},
  left=20mm,
- top=20mm,
-
- }
+ top=20mm
+}
 
 
 
@@ -75,13 +74,9 @@
     \scriptsize \scshape{Kungsholmens Gymnasium}
 }
 
-
-
 \maketitle
 \thispagestyle{empty} 
 \newpage
-
-
 
 \abstract{\noindent Gymnasiearbetet undersökte heuristiska algoritmer som löser det grafteoretiska handelsresandeproblemet. Algoritmerna testades på olika dataset med bestämd tidsbegränsning inriktad på att hitta den kortast möjliga rutten där alla angivna platser besökts.. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
 
@@ -197,7 +192,7 @@ The heuristic algorithms compared to solve the travelling salesman problem in th
 The random generation algorithm generates a random permutation of all possible nodes and calculates the length of the path generated. It always stores the path with the shortest path and repeats this algorithm until the time limit is reached. The algorithm is similar to repeatedly throwing some amount of dice, and after each throw the sum of all the results is stored. The more dice there are, the smaller the probability for the throw to result in the highest number possible.
 
 \begin{algorithm}[H]
-\caption{Random path generator}\label{Random Algorithm}
+\caption{Random path generator}
 \begin{algorithmic}
 
 \While{Less than 2 seconds has passed}
@@ -236,10 +231,10 @@ It might seem that this approach will always find the shortest path, however, th
 For example in figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
 
 \noindent
-Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_\ref{logarithm}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
+Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}$\ref{logarithm} random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
 
 \begin{algorithm}[H]
-\caption{Modified Dijkstra's algorithm for $\log{n}$ neighbors}\label{Random Algorithm}
+\caption{Modified Dijkstra's algorithm for $\log{n}$ neighbors}
 \begin{algorithmic}
 
 \While{Less than 2 seconds has passed}
@@ -358,13 +353,13 @@ In figure \ref{Figure:Swapping}, the order of city $3$ and city $6$ has been swa
  
 
 \begin{algorithm}[H]
-\caption{Random Swapping}\label{Random Algorithm}
+\caption{Random Swapping}
 \begin{algorithmic}
 
 \While{Less than 2 seconds has passed}
     \State $currOrder \gets $ random permutation of the $n$ nodes
 
-    \State $steps \gets 0$ \Comment{\textcolor{blue}{keeps track of the number of times cities has been compared without any improvements}}
+    \State $steps \gets 0$ \Comment{\textcolor{blue}{keeps track of the number of times cities have been compared without any improvements}}
 
     \While{Less than 2 seconds has passed}
         \State $steps \gets steps + 1$
@@ -397,7 +392,7 @@ In figure \ref{Figure:Swapping}, the order of city $3$ and city $6$ has been swa
 \end{algorithm}
 
 \noindent
-The algorithm required $O(n)$ to generate a random permutation of the cities. After that it only performs a constant number of operations for each swap, which means $O(1)$ for each evaluation or swap. This repeats until 2 seconds have gone by.
+The algorithm required $O(n)$ to generate a random permutation of the cities. After that, it only performs a constant number of operations for each swap, which means $O(1)$ for each evaluation or swap. This repeats until 2 seconds have gone by.
 
 \noindent
 There are many advantages to a genetic algorithm since it will continuously try to improve a given solution. However, at some point, it will stop improving, since it will have reached a local optimum, which means that there are no other improvements that could be made by only swapping two cities. Eventually, it would require a bigger modification in the path for the path to become even shorter, which also implies that this algorithm cannot guarantee the optimal solution for any map either. \cite{YANG202191}
@@ -455,7 +450,8 @@ The genetic algorithm with 2-opt swapping is another genetic algorithm, but inst
 This algorithm is called 2-opt because two edges are randomly chosen, as opposed to another algorithm called 3-opt, where three edges are randomly chosen. The "opt" in 2-opt and 3-opt stands for optimization. 
 
 \noindent
-ONLY ONE WAY TO REPLACE
+Notice that there is only one possible way for the edges to be replaced so the new graph is not similar to the previous one, and for the graph to stay connected.
+
 
 \noindent
 It can also be proven that whenever two edges cross each other, it will always be shorter to swap the edges. This can be proven using the triangle inequality$_\ref{Triangle Inequality}$, since when two edges cross each other, two triangles that are missing one side each are created. By replacing the edges, the existing sides of the triangle will be replaced by the non-existing sides, which will guarantee a shorter path, if not equal length. This is shown in figure \ref{Figure:triangleIneq2opt}.
@@ -489,18 +485,59 @@ It can also be proven that whenever two edges cross each other, it will always b
 \noindent
 In other words, if there are edges that cross each other, they would eventually be replaced by more optimal edges that make the total path shorter.
 
+\begin{algorithm}[H]
+\caption{Random 2-opt swapping}
+\begin{algorithmic}
+
+\While{Less than 2 seconds has passed}
+    \State $currOrder \gets $ random permutation of the $n$ nodes
+
+    \State $steps \gets 0$ 
+
+    \While{Less than 2 seconds has passed}
+        \State $steps \gets steps + 1$
+        \State $x \gets $ random number from $0$ to $n-2$ 
+
+        \State $y \gets $ random number from $x+1$ to $n-$1 \Comment{\textcolor{blue}{to make sure the two unique edges are picked}}
 
 
-pseudo code
+        \State $xLeft \gets $ city in $currOrder$ before $x$
+        \State $yRight \gets $ city in $currOrder$ after $y$
 
+        
+        \State $distBefore \gets distance(currOrder[x], xLeft) + distance(currOrder[y], yRight)$ 
 
+        \State $distAfter \gets distance(currOrder[x], yRight) + distance(currOrder[y], xLeft)$ 
 
+        \If{$distAfter < distBefore$}
+            \State $steps \gets 0$
+            \State reverse the sub-array of $currOrder$ from index $x$ to $y$.
+        \ElsIf{$steps > 4000$}
+            \State \textbf{break}
+        \EndIf
+    \EndWhile
 
-similar, but will have a higher constant factor since it will iterate through more nodes and checks. For the same reason, 2-opt is in some cases more efficient compared to 3-opt, since if three edges are considered, there are many more ways to replace the edges.
+    \State $currPath \gets calculatePath(currOrder)$
+    \If{$bestPath > currPath$}
+        \State $bestOrder \gets currOrder$
+        \State $bestPath \gets currPath$
+    \EndIf
+\EndWhile
 
+\State $\textbf{print } bestOrder $
+\State $\textbf{print } bestPath $
 
- algorithm that requires $O(n)$. however for each swap, it takes $O(n)$. run until 2 seconds has gone by.
+\end{algorithmic}
+\end{algorithm}
 
+\noindent
+The process of replacing the edges would in the worst-case scenario require a traverse of the whole array, which means one replacement would in the worst-case scenario be linear $O(n)$ in time complexity. At the same time in the best-case scenario, it would be for the algorithm to not replace, which would only take a constant number $O(1)$ of operations. For that reason, the genetic algorithm with random 2-opt swapping would have a higher constant factor compared to random swapping with nodes. The same reasoning could be used when comparing the efficiency of 2-opt with 3-opt. Because if three edges are considered, there are many more ways to replace the edges.
+
+\noindent
+The algorithm requires $O(n)$ to generate an initial random permutation of the cities. After that, the algorithm performs up to $O(n)$ operations for each replacement of edges. This repeats until 2 seconds have gone by.
+
+\noindent
+The way the 2-opt algorithm untangles crossing edges would efficiently decrease the total path of a random path, especially since the requirements for the edges to be replaced is only that the sum of the length of the new edges is shorter than the edges before. However, identically to random node swapping, this algorithm would also reach a local optimum. This also implies that this algorithm cannot guarantee to find the optimal solution.
 
 
 \subsubsection{Maps}\label{maps}
@@ -515,6 +552,7 @@ map5: \href{https://developers.google.com/public-data/docs/canonical/states_csv}
 
 \subsubsection{Integers vs floats}\label{Int vs Float}
 Integers and floats are two common data types for numbers. Integers are used to store whole numbers, while floats are used to store decimal numerals. Computers are known to be very inefficient when it comes to handling float numbers.
+
 this is why all coordinates of the maps are integers, even though coordinates on a real map are not necessarily integers. 
 
 
@@ -522,8 +560,9 @@ this is why all coordinates of the maps are integers, even though coordinates on
 
 \section{Method}\label{Method}
 Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that are made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, Genetic algorithm with random swapping$_{\ref{Random Swapping}}$, and Genetic algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Each map was tested with each algorithm $6$ times, which means that there were $6$ replicates of each combination of map and algorithm. Several replicates were made since randomness since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results can be compared across different maps, and if possible, a correlation could be found. 
+
 \noindent
-The constant variables of this method are the various maps, the time limit, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
+The constant variables of this method are the various maps, the time limit, computer hardware, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
 
 
 \subsection{Limitations}\label{Limitations}
