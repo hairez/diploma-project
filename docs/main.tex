@@ -231,7 +231,7 @@ It might seem that this approach will always find the shortest path, however, th
 For example in figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
 
 \noindent
-Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}$\ref{logarithm} random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
+Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_\ref{logarithm}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
 
 \begin{algorithm}[H]
 \caption{Modified Dijkstra's algorithm for $\log{n}$ neighbors}
@@ -541,7 +541,33 @@ The way the 2-opt algorithm untangles crossing edges would efficiently decrease 
 
 
 \subsubsection{Maps}\label{maps}
+In this research, 10 maps were generated. Some maps were randomly generated to fit some kind of shape, while others were based on actual maps from real countries such as Sweden and the United States of America.
+
+\noindent
+The maps generated are numbered from 1 to 10, and the following is a small description of each map.
+
+\begin{enumerate}
+  \item 10 uniformly randomized cities.
+  \item 1000 uniformly randomized cities.
+  \item 10000 uniformly randomized cities.
+  \item 1916 different cities in Sweden.
+  \item 49 locations in the United States of America. All states but Hawaii and Alaska are included. District of Columbia is included.
+  \item 10000 randomized cities where all points are strictly increasing. 
+  \item 10000 randomized cities, but the points form a circle.
+  \item 10000 cities placed all integer coordinates from 1 to 100.
+  \item 10000 randomized cities, but all the points share the same $y$-coordinate.
+  \item 100 randomized cities where all points are strictly increasing.
+\end{enumerate}
+
+\noindent
+Maps 1, 2, and 3 consist of cities with coordinates that are uniformly chosen. Map 4 is based on real coordinates of cities existing in Sweden. The data for map 4 is taken from . Map 5 is based on 48 American states and the District of Columbia. Hawaii and Alaska are not included because those states are considered to be located relatively far away from all other states. The data for map 5 is taken from . Maps 6 and 10 consist of randomly chosen coordinates, but the coordinates of the points are strictly increasing. This means that for any two points $p_1 = (x_1,y_1)$ and $p_2=(x_2,y_2)$ on maps 6 and 10, if $x_1 < x_2$ fulfilled, then $y_1 < y_2$ is also true.
+
+All of the test data maps are visualized in t
+\ref{appendix:TestData}
+
+\noindent
 How does each map get generated?
+
 
 map4 Sweden: \href{https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv}{github}  took the top 1000 or 10000 most populated cities in Sweden
 
@@ -553,7 +579,7 @@ map5: \href{https://developers.google.com/public-data/docs/canonical/states_csv}
 \subsubsection{Integers vs floats}\label{Int vs Float}
 Integers and floats are two common data types for numbers. Integers are used to store whole numbers, while floats are used to store decimal numerals. Computers are known to be very inefficient when it comes to handling float numbers.
 
-this is why all coordinates of the maps are integers, even though coordinates on a real map are not necessarily integers. 
+this is why all coordinates of the maps are integers, even though coordinates on a real map are not necessarily integers. All coordinates were rounded to the nearest integer.
 
 
 
@@ -781,5 +807,78 @@ constantfactors of the algorithms could definitely be improved.
 \bibliography{references.bib} \label{sec6}
 
 
+\newpage
+
+\begin{appendices}
+    
+
+
+\section{Test Data Appendix}
+\label{appendix:TestData}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/01.png}
+	\caption{Test case 1 plotted on a coordinate plane.}
+	\label{fig:01}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/02.png}
+	\caption{Test case 2 plotted on a coordinate plane.}
+	\label{fig:02}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/03.png}
+	\caption{Test case 3 plotted on a coordinate plane.}
+	\label{fig:03}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{code/visualizer/testdata/04.png}
+	\caption{Test case 4 plotted on a coordinate plane.}
+	\label{fig:04}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{code/visualizer/testdata/05.png}
+	\caption{Test case 5 plotted on a coordinate plane.}
+	\label{fig:05}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/06.png}
+	\caption{Test case 6 plotted on a coordinate plane.}
+	\label{fig:06}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/07.png}
+	\caption{Test case 7 plotted on a coordinate plane.}
+	\label{fig:07}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/08.png}
+	\caption{Test case 8 plotted on a coordinate plane.}
+	\label{fig:08}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/09.png}
+	\caption{Test case 9 plotted on a coordinate plane.}
+	\label{fig:09}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{code/visualizer/testdata/10.png}
+	\caption{Test case 10 plotted on a coordinate plane.}
+	\label{fig:10}
+\end{figure}
+
+
+\end{appendices}
 
 \end{document}
