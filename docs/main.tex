@@ -67,14 +67,19 @@
 
 \begin{document}
 
-\title{\huge \scshape{Optimal TSP Solvers: Time-Constrained Algorithm Analysis}}
+\title{\huge \vfill \scshape{Optimal TSP Solvers: Time-Constrained Algorithm Analysis}}
 \author{
     \small \scshape{Harry Zhang} \\ 
     \small \scshape{Supervisors: Per-Olof Freerks and Felicia Dinnetz} \\
     \scriptsize \scshape{Kungsholmens Gymnasium}
+    \\
+    \includegraphics[scale=0.3]{docs/pictures/KGlogopng.png}
+    \\
 }
-
 \maketitle
+\vfill
+
+
 \thispagestyle{empty} 
 \newpage
 
@@ -579,11 +584,19 @@ The constant variables of this method are the various maps, the time limit, comp
 
 
 \subsection{Limitations}\label{Limitations}
-One limitation is the scope of algorithms used. This study only considers $4$ algorithms for solving the travelling salesman problem. However, there could be other algorithms that are not included in the study that could perform better in a similar time-constrained environment. Similarly, combinations of these algorithms are also possible to create and could in the same way also be a more optimal option than the algorithms used. 
+One limitation is the scope of algorithms used. This study only considers $4$ algorithms for solving the travelling salesman problem. However, there could be other algorithms that are not included in the study which could perform better in a similar time-constrained environment. Similarly, combinations of these algorithms are also possible to create and could in the same way also be a more optimal option than the algorithms used. 
+
 \noindent
 At the same time, the algorithms used in the study may require more fine-tuning on various parameters to achieve even more optimal performance. 
+
 \noindent
-Another limitation is the different maps used. Since only $10$ different maps are being considered here, it would not represent fully all possible scenarios. This should be taken into consideration before drawing any generalized conclusion from the results of these maps.
+The results of the study may be dependent on the hardware and software used for the experiments. The same algorithms may perform differently using different hardware or with different compilers.
+
+\noindent
+Another limitation is the different maps used. Since only $10$ different maps are being considered here, it would not represent fully all possible scenarios. 
+
+\noindent
+These limitations should be taken into consideration before drawing any generalized conclusion from the results of these maps.
 
 
 \section{Results}\label{Results}
@@ -596,11 +609,12 @@ Also make the best result on each map bold, and calculate the average for each a
 
 
 \begin{table}[H]
+    \caption{Shortest path found from each run when run on map 1. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values given are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 1 } & random n=10 & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 1} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
         5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
         5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
@@ -614,8 +628,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 2 (random n=1000)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 2} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         992924716.9 & 375916823.6 & 225977937.9 & 72516889.45 \\ \hline
         987691105 & 372737685.5 & 229849151.6 & 69427895.87 \\ \hline
         995151465.5 & 369072515.4 & 221449499.6 & 68808723.25 \\ \hline
@@ -629,8 +643,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 3 (random n=10000)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 3} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         10323119546 & 3240428284 & 3793530293 & 3152792905 \\ \hline
         10279776945 & 3233877905 & 3776841645 & 2937278015 \\ \hline
         10298645329 & 3234864733 & 3822141990 & 3095200214 \\ \hline
@@ -644,8 +658,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 4 (Swedish cities n=1916)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 4} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         79693630.34 & 27564839.82 & 20262321.82 & 6084857.948 \\ \hline
         79693630.34 & 27473123.85 & 19561130.69 & 6204447.677 \\ \hline
         79693630.34 & 27566245.04 & 19480924.3 & 5934914.712 \\ \hline
@@ -659,8 +673,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 5 (USA states n=49)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 5} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         63470.66185 & 32761.02342 & 23363.90715 & 18288.09154 \\ \hline
         63890.85113 & 31608.6966 & 23739.19883 & 18205.1266 \\ \hline
         64490.2589 & 31536.60587 & 21482.12635 & 18234.21287 \\ \hline
@@ -674,8 +688,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 6 (Strict increase n=10000)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 6} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         9291380109 & 1349024996 & 2373586959 & 1814447149 \\ \hline
         9310437819 & 1348572833 & 2280159165 & 1455553611 \\ \hline
         9297883462 & 1357296776 & 2344747004 & 1601361008 \\ \hline
@@ -689,8 +703,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 7 (Circle n=10000)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 7} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         12567650338 & 2248980912 & 3908157889 & 2537013830 \\ \hline
         12573745599 & 2217757665 & 3952339027 & 2431780351 \\ \hline
         12600808851 & 2244295348 & 3929417131 & 2620719310 \\ \hline
@@ -704,8 +718,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 8 (Grid n=10000)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 8} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         516272.1618 & 162933.9379 & 189487.4362 & 146595.3781 \\ \hline
         515198.6725 & 162480.318 & 185568.5141 & 148485.5344 \\ \hline
         515030.9863 & 162150.3042 & 186938.2779 & 148197.8332 \\ \hline
@@ -719,8 +733,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 9 (Straight line n=10000)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 9} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         6553370088 & 949184378 & 1656974798 & 896028426 \\ \hline
         6565113386 & 946308942 & 1643517954 & 903780140 \\ \hline
         6506833168 & 961167540 & 1620169650 & 808419124 \\ \hline
@@ -734,8 +748,8 @@ Also make the best result on each map bold, and calculate the average for each a
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
-        \textbf{Map 10 (Strict increase n=100)} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Generation} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
+        \textbf{Map 10} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
         67609575.19 & 20823427.49 & 11069509.51 & 5815136.523 \\ \hline
         69664811.6 & 20805907.35 & 11533087.55 & 5810589.705 \\ \hline
         67715528.88 & 20874288.9 & 10755444.78 & 5804089.746 \\ \hline
