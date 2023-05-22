@@ -231,7 +231,7 @@ It might seem that this approach will always find the shortest path, however, th
 For example in figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
 
 \noindent
-Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_\ref{logarithm}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
+Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_{\ref{logarithm}}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
 
 \begin{algorithm}[H]
 \caption{Modified Dijkstra's algorithm for $\log{n}$ neighbors}
@@ -398,7 +398,7 @@ The algorithm required $O(n)$ to generate a random permutation of the cities. Af
 There are many advantages to a genetic algorithm since it will continuously try to improve a given solution. However, at some point, it will stop improving, since it will have reached a local optimum, which means that there are no other improvements that could be made by only swapping two cities. Eventually, it would require a bigger modification in the path for the path to become even shorter, which also implies that this algorithm cannot guarantee the optimal solution for any map either. \cite{YANG202191}
 
 \subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
-The genetic algorithm with 2-opt swapping is another genetic algorithm, but instead of swapping two random nodes, it will swap two random edges. It is similar to the genetic algorithm with random swapping$_\ref{Random Swapping}$, since this algorithm also starts off with a randomly generated path. Afterward, two edges are repeatedly randomly chosen. Using the nodes the edges are connected to, the change in distance can be simulated and evaluated. If this creates a longer path compared to before, then the edges are not swapped. However, if the change would make the path shorter, then the edges are swapped. This also repeats until no improvements have been made after 4000 randomly chosen pairs of edges.
+The genetic algorithm with 2-opt swapping is another genetic algorithm, but instead of swapping two random nodes, it will swap two random edges. It is similar to the genetic algorithm with random swapping$_{\ref{Random Swapping}}$, since this algorithm also starts off with a randomly generated path. Afterward, two edges are repeatedly randomly chosen. Using the nodes the edges are connected to, the change in distance can be simulated and evaluated. If this creates a longer path compared to before, then the edges are not swapped. However, if the change would make the path shorter, then the edges are swapped. This also repeats until no improvements have been made after 4000 randomly chosen pairs of edges.
 
 
 \begin{figure}[ht]
@@ -454,7 +454,7 @@ Notice that there is only one possible way for the edges to be replaced so the n
 
 
 \noindent
-It can also be proven that whenever two edges cross each other, it will always be shorter to swap the edges. This can be proven using the triangle inequality$_\ref{Triangle Inequality}$, since when two edges cross each other, two triangles that are missing one side each are created. By replacing the edges, the existing sides of the triangle will be replaced by the non-existing sides, which will guarantee a shorter path, if not equal length. This is shown in figure \ref{Figure:triangleIneq2opt}.
+It can also be proven that whenever two edges cross each other, it will always be shorter to swap the edges. This can be proven using the triangle inequality$_{\ref{Triangle Inequality}}$, since when two edges cross each other, two triangles that are missing one side each are created. By replacing the edges, the existing sides of the triangle will be replaced by the non-existing sides, which will guarantee a shorter path, if not equal length. This is shown in figure \ref{Figure:triangleIneq2opt}.
 
 \begin{figure}[ht]
      \centering
@@ -560,32 +560,19 @@ The maps generated are numbered from 1 to 10, and the following is a small descr
 \end{enumerate}
 
 \noindent
-Maps 1, 2, and 3 consist of cities with coordinates that are uniformly chosen. Map 4 is based on real coordinates of cities existing in Sweden. The data for map 4 is taken from . Map 5 is based on 48 American states and the District of Columbia. Hawaii and Alaska are not included because those states are considered to be located relatively far away from all other states. The data for map 5 is taken from . Maps 6 and 10 consist of randomly chosen coordinates, but the coordinates of the points are strictly increasing. This means that for any two points $p_1 = (x_1,y_1)$ and $p_2=(x_2,y_2)$ on maps 6 and 10, if $x_1 < x_2$ fulfilled, then $y_1 < y_2$ is also true.
-
-All of the test data maps are visualized in t
-\ref{appendix:TestData}
-
-\noindent
-How does each map get generated?
+Maps 1, 2, and 3 consist of cities with coordinates that are uniformly chosen. Map 4 is based on real coordinates of cities existing in Sweden. The data for map 4 is taken from a GitHub repository \cite{SwedishCities}. Map 5 is based on 48 American states and the District of Columbia. Hawaii and Alaska are not included because those states are considered to be located relatively far away from all other states. The data for map 5 is taken from Dataset Publishing Language powered by Google \cite{DatasetUSA}. Maps 6 and 10 consist of randomly chosen coordinates, but the coordinates of the points are strictly increasing. This means that for any two points $p_1 = (x_1,y_1)$ and $p_2=(x_2,y_2)$ on maps 6 and 10, if $x_1 < x_2$ fulfilled, then $y_1 < y_2$ is also true. In map 7 all the points form a circle. Map 8 creates a "grid" where most cities have 4 cities that are neighboring and closest. Map 9 essentially creates a straight line. All of the test data used are visualized in the appendix \ref{appendix:TestData}. The exact test data can also be found at \href{https://github.com/hairez/diploma-project/tree/main/code/tsp/data/secret}{https://github.com/hairez/diploma-project/tree/main/code/tsp/data/secret}.
 
 
-map4 Sweden: \href{https://github.com/sphrak/svenska-stader/blob/master/src/svenska-stader.csv}{github}  took the top 1000 or 10000 most populated cities in Sweden
 
-map5: \href{https://developers.google.com/public-data/docs/canonical/states_csv}{dev google}
-
-49 cities, without Hawaii, Alaska, and Puerto Rico.
-
-
-\subsubsection{Integers vs floats}\label{Int vs Float}
-Integers and floats are two common data types for numbers. Integers are used to store whole numbers, while floats are used to store decimal numerals. Computers are known to be very inefficient when it comes to handling float numbers.
-
-this is why all coordinates of the maps are integers, even though coordinates on a real map are not necessarily integers. All coordinates were rounded to the nearest integer.
+\subsubsection{Integers and Floats}\label{Int VS Float}
+Integers and floats are two primary data types for representing numbers in computer programming. Integers are used specifically for storing whole numbers, while floats are designed to handle decimal numerals. However, when it comes to processing float numbers, computers are generally known for their relative inefficiency compared to working with integers. For this reason, all coordinates of the maps are rounded to the nearest integer, even though coordinates on a real map are not necessarily integers. On the other hand, calculating the Euclidean distance$_{\ref{Euclidean distance}}$ requires the use of a square root, which could result in the distance being non-integer. If the distance would be rounded, it could potentially lead to an inaccurate result. For that reason, the distances of the paths are kept as floats. 
 
 
 
 
-\section{Method}\label{Method}
-Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that are made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, Genetic algorithm with random swapping$_{\ref{Random Swapping}}$, and Genetic algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Each map was tested with each algorithm $6$ times, which means that there were $6$ replicates of each combination of map and algorithm. Several replicates were made since randomness since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results can be compared across different maps, and if possible, a correlation could be found. 
+\section{Methodology}\label{Methodology}
+\subsection{Method}\label{Method}
+Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that were made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, Genetic algorithm with random swapping$_{\ref{Random Swapping}}$, and Genetic algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Both the algorithms and the results could be found on \href{https://github.com/hairez/diploma-project/tree/main/code/tsp}{https://github.com/hairez/diploma-project/tree/main/code/tsp}. Each map was tested with each algorithm $6$ times, resulting in $6$ replicates of each combination of map and algorithm. Several replicates were made since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was set to a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results were later compared across different maps.
 
 \noindent
 The constant variables of this method are the various maps, the time limit, computer hardware, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
