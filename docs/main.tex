@@ -13,8 +13,9 @@
 \usepackage{algorithmicx}%
 \usepackage{algpseudocode}%
 \usepackage{listings}%
-\usepackage{tikz}%draw graphs
 
+\usepackage{tikz}%draw graphs
+\usepackage{pgfplots}
 
 
 \usepackage{float}%make tables stay?
@@ -600,182 +601,165 @@ These limitations should be taken into consideration before drawing any generali
 
 
 \section{Results}\label{Results}
-
-Explain that the results are given in units of length. 
-Also make the best result on each map bold, and calculate the average for each algorithm on each map.
-
+\subsection{Raw Results}
+After 6 runs of each combination of algorithm and map, the results were recorded. The raw results can be found in appendix \ref{appendix:RawResults}. The lower the value, the shorter the path is.
 
 
+\subsection{Processed Results}
+
+The mean and standard deviation are given in tables \ref{Table 1} and \ref{Table 2}. 
 
 
-\begin{table}[H]
-    \caption{Shortest path found from each run when run on map 1. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values given are given in units of length.}
+\begin{table}[H] 
+    \caption{Mean and standard deviations of the raw results for each algorithm for maps 1 to 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 1}
     \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \begin{tabular}{|l|l|l|l|l|l|}
     \hline
-        \textbf{Map 1} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
-        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
-        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
-        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
-        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
-        6131798.7 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+        ~ & Map 1 & Map 2 & Map 3 & Map 4 & Map 5 \\ \hline
+        Random Gen Mean & 5931611.347 & 990989576.9 & 10297662286 & 79693630.34 & 63502.61492 \\ \hline
+        Random Gen StDev & 98071.37382 & 2802386.561 & 15005360.31 & 0 & 2016.200921 \\ \hline
+        Modified Dijkstra's Mean & 5891573.876 & 372698762.9 & 3234113811 & 27621763.38 & 31675.87155 \\ \hline
+        Modified Dijkstra's StDev & 0 & 2240105.103 & 3959723.497 & 108885.9355 & 588.4132446 \\ \hline
+        Random Swapping Mean & 5891573.876 & 225115031.8 & 3811725120 & 19706392.59 & 22647.95397 \\ \hline
+        Random Swapping StDev & 0 & 9689780.489 & 23965143.87 & 377031.2052 & 1255.940382 \\ \hline
+        2-opt Swapping Mean & 5891573.876 & 70079398.91 & 3040000568 & 6025155.901 & 18275.29668 \\ \hline
+        2-opt Swapping StDev & 0 & 1291505.509 & 77298161.28 & 132900.3136 & 44.92499363 \\ \hline
     \end{tabular}
 \end{table}
 
 \begin{table}[H]
+    \caption{Mean and standard deviations of the raw results for each algorithm for maps 6 to 10. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 2}
     \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \begin{tabular}{|l|l|l|l|l|l|}
     \hline
-        \textbf{Map 2} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        992924716.9 & 375916823.6 & 225977937.9 & 72516889.45 \\ \hline
-        987691105 & 372737685.5 & 229849151.6 & 69427895.87 \\ \hline
-        995151465.5 & 369072515.4 & 221449499.6 & 68808723.25 \\ \hline
-        989088278.2 & 371810727.2 & 232695937.3 & 69720673.41 \\ \hline
-        989255767.2 & 373373480 & 233207053.9 & 70331677.81 \\ \hline
-        991826128.7 & 373281345.9 & 207510610.3 & 69670533.67 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 3} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        10323119546 & 3240428284 & 3793530293 & 3152792905 \\ \hline
-        10279776945 & 3233877905 & 3776841645 & 2937278015 \\ \hline
-        10298645329 & 3234864733 & 3822141990 & 3095200214 \\ \hline
-        10298914814 & 3234688577 & 3842225040 & 3020962352 \\ \hline
-        10285436723 & 3228157454 & 3828077792 & 2984305232 \\ \hline
-        10300080362 & 3232665916 & 3807533962 & 3049464688 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 4} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        79693630.34 & 27564839.82 & 20262321.82 & 6084857.948 \\ \hline
-        79693630.34 & 27473123.85 & 19561130.69 & 6204447.677 \\ \hline
-        79693630.34 & 27566245.04 & 19480924.3 & 5934914.712 \\ \hline
-        79693630.34 & 27734229.92 & 19246108.98 & 5871981.884 \\ \hline
-        79693630.34 & 27636185.38 & 20044024.37 & 5924928.645 \\ \hline
-        79693630.34 & 27755956.26 & 19643845.39 & 6129804.537 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 5} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        63470.66185 & 32761.02342 & 23363.90715 & 18288.09154 \\ \hline
-        63890.85113 & 31608.6966 & 23739.19883 & 18205.1266 \\ \hline
-        64490.2589 & 31536.60587 & 21482.12635 & 18234.21287 \\ \hline
-        62379.14452 & 31131.14313 & 22779.03298 & 18311.86805 \\ \hline
-        66385.01545 & 31806.5271 & 23763.20389 & 18311.86805 \\ \hline
-        60399.75765 & 31211.23317 & 20760.25464 & 18300.61299 \\ \hline
-     \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 6} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        9291380109 & 1349024996 & 2373586959 & 1814447149 \\ \hline
-        9310437819 & 1348572833 & 2280159165 & 1455553611 \\ \hline
-        9297883462 & 1357296776 & 2344747004 & 1601361008 \\ \hline
-        9302381835 & 1353080817 & 2306799937 & 1599620455 \\ \hline
-        9286799450 & 1350374546 & 2325432171 & 1593378825 \\ \hline
-        9329019143 & 1348033186 & 2361945269 & 1646813150 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 7} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        12567650338 & 2248980912 & 3908157889 & 2537013830 \\ \hline
-        12573745599 & 2217757665 & 3952339027 & 2431780351 \\ \hline
-        12600808851 & 2244295348 & 3929417131 & 2620719310 \\ \hline
-        12577611347 & 2237577332 & 3851583858 & 2445124971 \\ \hline
-        12549889305 & 2238673128 & 3951409612 & 2557729463 \\ \hline
-        12551595182 & 2245565916 & 3884563307 & 2602087504 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 8} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        516272.1618 & 162933.9379 & 189487.4362 & 146595.3781 \\ \hline
-        515198.6725 & 162480.318 & 185568.5141 & 148485.5344 \\ \hline
-        515030.9863 & 162150.3042 & 186938.2779 & 148197.8332 \\ \hline
-        516285.3527 & 162161.47 & 186978.8585 & 148080.8074 \\ \hline
-        513969.2742 & 161665.9353 & 184770.9426 & 142505.3975 \\ \hline
-        514867.3062 & 162288.9124 & 186445.5991 & 148529.9744 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 9} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        6553370088 & 949184378 & 1656974798 & 896028426 \\ \hline
-        6565113386 & 946308942 & 1643517954 & 903780140 \\ \hline
-        6506833168 & 961167540 & 1620169650 & 808419124 \\ \hline
-        6545958006 & 945003364 & 1668749822 & 787330814 \\ \hline
-        6535809660 & 956124694 & 1613793366 & 806036378 \\ \hline
-        6562710126 & 951048114 & 1582440390 & 779322396 \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
-    \hline
-        \textbf{Map 10} & ~ & ~ & ~ \\ \hline
-        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt swapping} \\ \hline
-        67609575.19 & 20823427.49 & 11069509.51 & 5815136.523 \\ \hline
-        69664811.6 & 20805907.35 & 11533087.55 & 5810589.705 \\ \hline
-        67715528.88 & 20874288.9 & 10755444.78 & 5804089.746 \\ \hline
-        68228851.14 & 21454217.01 & 12453953 & 5792401.336 \\ \hline
-        68862987.39 & 19999070.68 & 12382933.57 & 5812265.15 \\ \hline
-        70379810.37 & 21192230.7 & 10883480.63 & 5800222.75 \\ \hline
+        ~ & Map 6 & Map 7 & Map 8 & Map 9 & Map 10 \\ \hline
+        Random Gen Mean & 9302983636 & 12570216770 & 515270.6256 & 6544965739 & 68743594.1 \\ \hline
+        Random Gen StDev & 15207604.31 & 18812568.95 & 888.9918074 & 21588586.7 & 1108871.265 \\ \hline
+        Modified Dijkstra's Mean & 1351063859 & 2238808383 & 162280.1463 & 951472838.7 & 20858190.36 \\ \hline
+        Modified Dijkstra's StDev & 3547948.175 & 11170657.25 & 418.5181522 & 6157343.039 & 491755.728 \\ \hline
+        Random Swapping Mean & 2332111751 & 3912911804 & 186698.2714 & 1630940997 & 11513068.17 \\ \hline
+        Random Swapping StDev & 35083492.44 & 39740072.84 & 1610.624947 & 31710622.62 & 749593.063 \\ \hline
+        2-opt Swapping Mean & 1618529033 & 2532409238 & 147065.8208 & 830152879.7 & 5805784.202 \\ \hline
+        2-opt Swapping StDev & 115784019.8 & 78817208.42 & 2344.771193 & 55194184.9 & 8549.426892 \\ \hline
     \end{tabular}
 \end{table}
 
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis} [
+            ybar,
+            bar width = 7pt,
+            width = 17cm,
+            height = 7cm,
+            xlabel = Test case,
+            ylabel = Mean distance value normalized,
+            xmin = 1,
+            xmax = 10,
+            ymin = 0,
+            ymax = 1,
+            legend cell align={right},
+            legend pos = north east,
+            %x tick label style={rotate=45},
+            xtick = data,
+            %ytick = data,
+            y tick label style={/pgf/number format/1000 sep=},
+            enlarge y limits = {value = .25, upper},
+            enlarge x limits = {abs = .8}
+            %enlarge x limits = {abs = .8}
+        ]
+        \addplot+ [
+                error bars/.cd,
+                    y dir=both,
+                    % (changed from `y explicit` so the error bars are (clearly) visible
+                    y explicit ,
+            ] coordinates {
+                (1, 1) 
+                (2, 1) 
+                (3, 1) 
+                (4, 1)
+                (5, 1) 
+                (6, 1) 
+                (7, 1) 
+                (8, 1) 
+                (9, 1) 
+                (10, 1) 
+            };
+        \addplot+ [
+                error bars/.cd,
+                    y dir=both,
+                    % (changed from `y explicit` so the error bars are (clearly) visible
+                    y explicit ,
+            ] coordinates {
+                (1, 0.9932501527) 
+                (2, 0.3760874702) 
+                (3, 0.3140629127) 
+                (4, 0.3465993864)
+                (5, 0.4988120819) 
+                (6, 0.1452290912) 
+                (7, 0.1781041986) 
+                (8, 0.3149415826) 
+                (9, 0.1453747623) 
+                (10, 0.3034201314) 
+            };
 
-\newpage
+        \addplot+ [
+                error bars/.cd,
+                    y dir=both,
+                    % (changed from `y explicit` so the error bars are (clearly) visible
+                    y explicit ,
+            ] coordinates {
+                (1, 0.9932501527) 
+                (2, 0.2271618562) 
+                (3, 0.3701544112) 
+                (4, 0.2472768841)
+                (5, 0.3566460059) 
+                (6, 0.2506842796) 
+                (7, 0.3112843538) 
+                (8, 0.3623305155) 
+                (9, 0.2491901504) 
+                (10, 0.1674784149) 
+            };
 
+        \addplot+ [
+                error bars/.cd,
+                    y dir=both,
+                    % (changed from `y explicit` so the error bars are (clearly) visible
+                    y explicit ,
+            ] coordinates {
+                (1, 0.9932501527) 
+                (2, 0.07071658526) 
+                (3, 0.2952126884) 
+                (4, 0.07560398334)
+                (5, 0.2877880967) 
+                (6, 0.1739795636) 
+                (7, 0.2014610634) 
+                (8, 0.285414719) 
+                (9, 0.1268383843) 
+                (10, 0.08445563951) 
+            };
+        \legend {Random Generator, Modified Dijkstra's, Random Swapping, 2-opt Swapping};
+        \end{axis}
+    \end{tikzpicture}
+\caption{Bar graph displaying the means of each algorithm on each map from 1-10. All means are normalized to the mean of the results of the random generator algorithm.} \label{MeanDiagram}
+\end{figure}
+
+In figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used, on for example maps 6 and 7. 
+
+%\subsection{Statistical Tests}
 
 \section{Discussion}\label{sec4}
 
 \subsection{Generalized Results}\label{subsec1}
+First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1, which could be seen in table \ref{Table Map 1}. All but one run when the algorithms were executed on test case 1 resulted in finding the shortest path of $5891573.876$. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
+
 which algorithm showed the best results overall?
-
-First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
-
 Random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. 
 
 Between the two Genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. 
 
-\subsection{Specified Results }\label{subsec2}
+\subsection{Specified Results}\label{subsec2}
 what algorithm could be good in what situation?
 
 Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples of the maps the modified Dijkstra's algorithm excels at are map 6 and map 7. 
@@ -814,7 +798,7 @@ constantfactors of the algorithms could definitely be improved.
     
 
 
-\section{Test Data Appendix}
+\section{Test Data}
 \label{appendix:TestData}
 
 
@@ -878,6 +862,196 @@ constantfactors of the algorithms could definitely be improved.
 	\caption{Test case 10 plotted on a coordinate plane.}
 	\label{fig:10}
 \end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Raw Results}
+\label{appendix:RawResults}
+
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 1. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}\label{Table Map 1}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 1} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+        5891573.876 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+        6131798.700 & 5891573.876 & 5891573.876 & 5891573.876 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 2. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 2} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        992924716.9 & 375916823.6 & 225977937.9 & 72516889.45 \\ \hline
+        987691105.0 & 372737685.5 & 229849151.6 & 69427895.87 \\ \hline
+        995151465.5 & 369072515.4 & 221449499.6 & 68808723.25 \\ \hline
+        989088278.2 & 371810727.2 & 232695937.3 & 69720673.41 \\ \hline
+        989255767.2 & 373373480.0 & 233207053.9 & 70331677.81 \\ \hline
+        991826128.7 & 373281345.9 & 207510610.3 & 69670533.67 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 3. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 3} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        10323119546 & 3240428284 & 3793530293 & 3152792905 \\ \hline
+        10279776945 & 3233877905 & 3776841645 & 2937278015 \\ \hline
+        10298645329 & 3234864733 & 3822141990 & 3095200214 \\ \hline
+        10298914814 & 3234688577 & 3842225040 & 3020962352 \\ \hline
+        10285436723 & 3228157454 & 3828077792 & 2984305232 \\ \hline
+        10300080362 & 3232665916 & 3807533962 & 3049464688 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 4. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 4} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        79693630.34 & 27564839.82 & 20262321.82 & 6084857.948 \\ \hline
+        79693630.34 & 27473123.85 & 19561130.69 & 6204447.677 \\ \hline
+        79693630.34 & 27566245.04 & 19480924.30 & 5934914.712 \\ \hline
+        79693630.34 & 27734229.92 & 19246108.98 & 5871981.884 \\ \hline
+        79693630.34 & 27636185.38 & 20044024.37 & 5924928.645 \\ \hline
+        79693630.34 & 27755956.26 & 19643845.39 & 6129804.537 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 5} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        63470.66185 & 32761.02342 & 23363.90715 & 18288.09154 \\ \hline
+        63890.85113 & 31608.69660 & 23739.19883 & 18205.12660 \\ \hline
+        64490.25890 & 31536.60587 & 21482.12635 & 18234.21287 \\ \hline
+        62379.14452 & 31131.14313 & 22779.03298 & 18311.86805 \\ \hline
+        66385.01545 & 31806.52710 & 23763.20389 & 18311.86805 \\ \hline
+        60399.75765 & 31211.23317 & 20760.25464 & 18300.61299 \\ \hline
+     \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 6. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 6} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        9291380109 & 1349024996 & 2373586959 & 1814447149 \\ \hline
+        9310437819 & 1348572833 & 2280159165 & 1455553611 \\ \hline
+        9297883462 & 1357296776 & 2344747004 & 1601361008 \\ \hline
+        9302381835 & 1353080817 & 2306799937 & 1599620455 \\ \hline
+        9286799450 & 1350374546 & 2325432171 & 1593378825 \\ \hline
+        9329019143 & 1348033186 & 2361945269 & 1646813150 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 7. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 7} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        12567650338 & 2248980912 & 3908157889 & 2537013830 \\ \hline
+        12573745599 & 2217757665 & 3952339027 & 2431780351 \\ \hline
+        12600808851 & 2244295348 & 3929417131 & 2620719310 \\ \hline
+        12577611347 & 2237577332 & 3851583858 & 2445124971 \\ \hline
+        12549889305 & 2238673128 & 3951409612 & 2557729463 \\ \hline
+        12551595182 & 2245565916 & 3884563307 & 2602087504 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 8. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 8} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        516272.1618 & 162933.9379 & 189487.4362 & 146595.3781 \\ \hline
+        515198.6725 & 162480.3180 & 185568.5141 & 148485.5344 \\ \hline
+        515030.9863 & 162150.3042 & 186938.2779 & 148197.8332 \\ \hline
+        516285.3527 & 162161.4700 & 186978.8585 & 148080.8074 \\ \hline
+        513969.2742 & 161665.9353 & 184770.9426 & 142505.3975 \\ \hline
+        514867.3062 & 162288.9124 & 186445.5991 & 148529.9744 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 9. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 9} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        6553370088 & 949184378 & 1656974798 & 896028426 \\ \hline
+        6565113386 & 946308942 & 1643517954 & 903780140 \\ \hline
+        6506833168 & 961167540 & 1620169650 & 808419124 \\ \hline
+        6545958006 & 945003364 & 1668749822 & 787330814 \\ \hline
+        6535809660 & 956124694 & 1613793366 & 806036378 \\ \hline
+        6562710126 & 951048114 & 1582440390 & 779322396 \\ \hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \caption{Shortest path found from each run when run on map 10. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \centering
+    \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
+    \hline
+        \textbf{Map 10} & ~ & ~ & ~ \\ \hline
+        \textbf{Random Gen} & \textbf{Modified Dijkstra's} & \textbf{Random Swapping} & \textbf{2-opt Swapping} \\ \hline
+        67609575.19 & 20823427.49 & 11069509.51 & 5815136.523 \\ \hline
+        69664811.60 & 20805907.35 & 11533087.55 & 5810589.705 \\ \hline
+        67715528.88 & 20874288.90 & 10755444.78 & 5804089.746 \\ \hline
+        68228851.14 & 21454217.01 & 12453953.00 & 5792401.336 \\ \hline
+        68862987.39 & 19999070.68 & 12382933.57 & 5812265.150 \\ \hline
+        70379810.37 & 21192230.70 & 10883480.63 & 5800222.750 \\ \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{appendices}
