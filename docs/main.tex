@@ -46,8 +46,14 @@
 % Hyperref setup
 \hypersetup {
     colorlinks=true,
-    urlcolor=blue
+    urlcolor=blue,
+    linkcolor=black,
+    filecolor=black,  
+    citecolor=black,
+
 }
+
+
 
 \usepackage{apacite}
 
@@ -84,16 +90,16 @@
 \thispagestyle{empty} 
 \newpage
 
-\abstract{\noindent Gymnasiearbetet undersökte heuristiska algoritmer som löser det grafteoretiska handelsresandeproblemet. Algoritmerna testades på olika dataset med bestämd tidsbegränsning inriktad på att hitta den kortast möjliga rutten där alla angivna platser besökts.. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
+\abstract{\noindent Denna studie undersöker det handelsresandeproblemet (TSP) på det euklidiska planet, vilket är känt som ett NP-fullständigt problem. Olika heuristiska algoritmer och strategier används vanligtvis för att tackla detta problem. I denna artikel jämförs fyra olika heuristiska algoritmer: slumpmässig generering, modifierad Dijkstras algoritm, slumpmässig omplacering och 2-opt-omplacering. Målet är att identifiera den algoritm som kan producera den mest optimala lösningen inom en tidsbegränsning på 2 sekunder. För att bedöma deras prestanda testas alla algoritmer på olika testfall. Varje algoritm körs sex gånger på 10 olika testfall med varierande storlek, fördelning och egenskaper. Resultaten avslöjar flera relevanta fynd. Framför allt presterar 2-opt-algoritmen konsekvent bättre än de andra tre algoritmerna och ger övergripande sett de mest optimala lösningarna. Det är dock värt att notera att den modifierade Dijkstras algoritmen utmärker sig i scenarier där den optimala vägen nära följer naturliga rutter. Samtidigt presterar slumpmässig omplacering konsekvent sämre än 2-opt-algoritmen, medan slumpmässig generering visar sämst prestanda av de fyra algoritmerna. All kod finns tillgänglig vid \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
 
-\keywords{travelling salesman problem, Euclidean distance, graph, Keyword4}
+\keywords{handelsresandeproblemet, euklidiska avstånd, grafer, heuristiska algoritmer}
 
 \thispagestyle{empty} 
 \newpage
 
-\abstract{\noindent The abstract serves both as a general introduction to the topic and as a brief, non-technical summary of the main results and their implications. Authors are advised to check the author instructions for the journal they are submitting to for word limits and if structural elements like subheadings, citations, or equations are permitted. The diploma project examined several heuristic algorithms designed to solve the travelling salesman problem within graph theory. The algorithms aimed to identify the shortest path covering all points within a predetermined time limit on various datasets. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
+\abstract{\noindent This study investigates the Traveling Salesman Problem (TSP) on the Euclidean plane, which is known to be an NP-complete problem. Various heuristic algorithms and strategies are commonly employed to tackle this problem. In this paper, four distinct heuristic algorithms are compared: random generation, modified Dijkstra's algorithm, random swapping, and 2-opt swapping. The aim is to identify the algorithm that can produce the most optimal solution within a 2-second time constraint. To assess their performance, all algorithms are tested on different test cases. Each algorithm is executed six times on 10 diverse test cases, featuring varying sizes, distributions, and traits. The obtained results reveal several key findings. Primarily, the 2-opt algorithm consistently outperforms the other three algorithms, yielding the most optimal solutions overall. However, it is noteworthy that the modified Dijkstra's algorithm excels in scenarios where the optimal path closely aligns with natural pathways. Conversely, the random swapping algorithm consistently performs worse than the 2-opt algorithm, while the random generation algorithm exhibits the poorest performance among the four algorithms. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.}
 
-\keywords{travelling salesman problem, Euclidean distance, graph, Keyword4}
+\keywords{travelling salesman problem, Euclidean distance, graph, heuristic algorithms}
 
 
 
@@ -124,7 +130,7 @@ The travelling salesman problem could also be interpreted as a weighted undirect
 \newline
 Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete$_{\ref{NP-complete}}$ problem \cite{PAPADIMITRIOU1977}. 
 \newline
-Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
+Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. However, there are algorithms that can guarantee solutions that will be some constant number factor within the optimal solution \cite{Christofides}. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
 \newline
 For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed, and then picking the shortest path out of all possible paths. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that are required to be visited. 
 \newline
@@ -136,7 +142,7 @@ The relevance and application of the travelling salesman problem in the real wor
 The aim of this paper is to find the limits of different heuristic algorithms for solving the travelling salesman problem. 
 
 \subsection{Research Question}\label{RQ}
-What algorithm out of the random generation algorithm, Dijkstra's algorithm, random swapping algorithm, and the 2-opt swapping are most efficient in finding the shortest path in a weighted graph, in a set amount of time?
+What algorithm out of the random generation algorithm, a modified Dijkstra's algorithm, the random swapping algorithm, and the 2-opt swapping are most efficient in finding the shortest path in a weighted graph, in a set amount of time?
 
 
 
@@ -754,37 +760,43 @@ In figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm pe
 \subsection{Generalized Results}\label{subsec1}
 First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1, which could be seen in table \ref{Table Map 1}. All but one run when the algorithms were executed on test case 1 resulted in finding the shortest path of $5891573.876$. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
 
-which algorithm showed the best results overall?
-Random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. 
 
-Between the two Genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. 
+\noindent
+Figure \ref{MeanDiagram} is showing that random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. Another thing to consider is that for map 4 according to table \ref{Table map 4}, the random generator got the same score 6 times continuously after each other. 
+
+\noindent
+As mentioned in the results, figure \ref{MeanDiagram} is showing that the 2-opt swapping algorithm can find the shorter path solving the travelling salesman problem, compared to other algorithms used in this research.
+
+\noindent
+Other than that, between the two genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. This could be seen by looking at their means across all maps in for example figure \ref{MeanDiagram}. 
+
+\noindent
+At the same time, the standard deviation is relatively low compared to their mean distance values, which could be seen in the tables \ref{Table 1} and \ref{Table 2}. 
+
+
 
 \subsection{Specified Results}\label{subsec2}
-what algorithm could be good in what situation?
+Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples that the modified Dijkstra's algorithm excels at are map 6 and map 7, which could be seen in the mean results in figure \ref{MeanDiagram}. Map 6 consists of strictly increasing coordinates, which makes it easier for modified Dijkstra's algorithm to find a short path since it will constantly choose whichever city is the closest. 
 
-Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples of the maps the modified Dijkstra's algorithm excels at are map 6 and map 7. 
-
-2-opt is generally good, but especially on maps where it is common that crosses exist. Since 2-opt will generally make changes if the two chosen edges cross each other since swapping them would lead to a shorter path.
+\noindent
+Figure \ref{MeanDiagram} is also saying that the 2-opt is generally good, but especially on maps where it is common that crosses exist. Since 2-opt will generally make changes if the two chosen edges cross each other swapping them would lead to a shorter path.
 
 
 \subsection{Evaluation and further research}\label{subsec3}
+The algorithms are not fully optimized yet, since there are ways to reduce constant factors from the algorithm. Additionally, since the algorithms used differ from each other, it is very likely that the constant factors of the algorithm are distributed in an unfair way. If the constant factors such as small changes in the algorithms, the results could potentially change. 
 
-further research should be conducted with:
-using $O(n^2)$ algorithms such as 
-greedy algorithm
-Christofides algorithm - guarantees to be within a factor of 3/2 of the optimal solution length \cite{Christofides}
-Simulated annealing.
-3 opt. or even Lin-Kernighan Heuristic algorithm
-Longer time-constraints?
-combination of these? For example start with a greedy solution, and then improve it by applying 3-opt.
-more maps with differnet shapes and distributions should be used.
+\noindent
+Other than that, in this paper, only 4 separate algorithms were considered. There are a lot of other algorithms and combinations of algorithms that could be experimented with to solve the travelling salesman problem.
 
-constantfactors of the algorithms could definitely be improved.
+\noindent
+Further research should be conducted using other algorithms with different strategies and time complexities. Some examples of algorithms to use are the Christofides algorithm, simulated annealing, 3-opt, or even Lin-Kernighan Heuristic algorithm. A longer time constraint could be considered if algorithms with bigger time complexities are used. Furthermore, to find the most optimal algorithm to solve the travelling salesman problem, different combinations of the algorithms should be tried. 
+
+\noindent
+Another thing to try is to use more maps and test cases with different shapes and distributions. In this paper, only one map of each trait and size was used, but different test cases using the trait could be generated without any bigger issues. Constant factors of the algorithms could definitely also be improved, which could eventually lead to the algorithms performing the best that they could without wasting operations.
+
+\newpage
 \section{Conclusion}\label{sec5}
-
-
-
-
+The results in this paper suggest that 2-opt swapping is generally the most efficient algorithm in finding the shortest path in a weighted graph, within 2 seconds. However, in some cases where the path of the optimal solution is more obvious, the modified Dijkstra's algorithm outperforms the other algorithms. It can also be concluded with confidence that the most optimal heuristic algorithm for solving the travelling salesman problem out of the algorithm used, is dependent on what test case is considered.
 
 
 \newpage
@@ -930,7 +942,7 @@ constantfactors of the algorithms could definitely be improved.
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 4. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on map 4. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.} \label{Table map 4}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
