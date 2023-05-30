@@ -238,7 +238,7 @@ It might seem that this approach will always find the shortest path, however, th
      \label{Figure:CounterExampleDijkstras}
 \end{figure}
 \noindent
-For example in figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
+For example in Figure \ref{Figure:CounterExampleDijkstras}, always choosing the closest neighbor would not provide the optimal path for this graph. If the salesman started on the node $a$, by repeatedly choosing the closest unvisited node it would city, it would traverse the graph by going $a \rightarrow b \rightarrow c \rightarrow d \rightarrow a$ which would result in a path with a cost of 102. There is a path with a lower cost, which is to go $a \rightarrow b \rightarrow d \rightarrow c \rightarrow a$, which would have a cost of 62 instead. One reason explaining why this algorithm cannot always find the most optimal path is that algorithms are required to find a path that returns from the starting position. Since the modified Dijkstra's algorithm is fundamentally only looking one step forward for each iteration, choosing whatever is the best option at the moment without considering the future consequences.
 
 \noindent
 Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(n^2)$, since for each node, the distance to all other nodes has to be calculated. However, by only comparing the $\log{n}_{\ref{logarithm}}$ random neighbors, and going to the closest one out of those, this modified Dijkstra's algorithm would essentially become an algorithm with a time complexity of $O(n \log{n})$. 
@@ -358,7 +358,7 @@ It is even possible to evaluate if the change would benefit the path can be done
 \end{figure}
 
 \noindent
-In figure \ref{Figure:Swapping}, the order of city $3$ and city $6$ has been swapped. Notice how the edges $0 \rightarrow 1$, $1 \rightarrow 2$, $4 \rightarrow 5$ remain unchanged. The reason for that is that only city $3$ and city $6$ would get affected by the swap, which means that only the edges connected to the cities being swapped have to be considered. This also implies that, if the sum of the lengths of the edges affected has decreased, it would mean that the swap leads to a shorter path.
+In Figure \ref{Figure:Swapping}, the order of city $3$ and city $6$ has been swapped. Notice how the edges $0 \rightarrow 1$, $1 \rightarrow 2$, $4 \rightarrow 5$ remain unchanged. The reason for that is that only city $3$ and city $6$ would get affected by the swap, which means that only the edges connected to the cities being swapped have to be considered. This also implies that, if the sum of the lengths of the edges affected has decreased, it would mean that the swap leads to a shorter path.
 
  
 
@@ -464,7 +464,7 @@ Notice that there is only one possible way for the edges to be replaced so the n
 
 
 \noindent
-It can also be proven that whenever two edges cross each other, it will always be shorter to swap the edges. This can be proven using the triangle inequality$_{\ref{Triangle Inequality}}$, since when two edges cross each other, two triangles that are missing one side each are created. By replacing the edges, the existing sides of the triangle will be replaced by the non-existing sides, which will guarantee a shorter path, if not equal length. This is shown in figure \ref{Figure:triangleIneq2opt}.
+It can also be proven that whenever two edges cross each other, it will always be shorter to swap the edges. This can be proven using the triangle inequality$_{\ref{Triangle Inequality}}$, since when two edges cross each other, two triangles that are missing one side each are created. By replacing the edges, the existing sides of the triangle will be replaced by the non-existing sides, which will guarantee a shorter path, if not equal length. This is shown in Figure \ref{Figure:triangleIneq2opt}.
 
 \begin{figure}[ht]
      \centering
@@ -749,7 +749,7 @@ The mean and standard deviation are given in tables \ref{Table 1} and \ref{Table
 \end{figure}
 
 \noindent
-In figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used, on for example maps 6 and 7. 
+In Figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used, on for example maps 6 and 7. 
 
 %\subsection{Statistical Tests}
 
@@ -762,16 +762,16 @@ First of all, when the number of cities is small enough, all cities will find th
 Figure \ref{MeanDiagram} is showing that random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. Another thing to consider is that for map 4 according to table \ref{Table map 4}, the random generator got the same score 6 times continuously after each other.
 
 \noindent
-As mentioned in the results, figure \ref{MeanDiagram} is showing that the 2-opt swapping algorithm can find the shorter path solving the travelling salesman problem, compared to other algorithms used in this research.
+As mentioned in the results, Figure \ref{MeanDiagram} is showing that the 2-opt swapping algorithm can find the shorter path solving the travelling salesman problem, compared to other algorithms used in this research.
 
 \noindent
-Other than that, between the two genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. This could be seen by looking at their means across all maps in for example figure \ref{MeanDiagram}. 
+Other than that, between the two genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. This could be seen by looking at their means across all maps in for example Figure \ref{MeanDiagram}. 
 
 \noindent
 At the same time, the standard deviation is relatively low compared to their mean distance values, which could be seen in the tables \ref{Table 1} and \ref{Table 2}. 
 
 \subsection{Specified Results}\label{subsec2}
-Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples that the modified Dijkstra's algorithm excels at are map 6 and map 7, which could be seen in the mean results in figure \ref{MeanDiagram}. Map 6 consists of strictly increasing coordinates, which makes it easier for modified Dijkstra's algorithm to find a short path since it will constantly choose whichever city is the closest. 
+Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples that the modified Dijkstra's algorithm excels at are map 6 and map 7, which could be seen in the mean results in Figure \ref{MeanDiagram}. Map 6 consists of strictly increasing coordinates, which makes it easier for modified Dijkstra's algorithm to find a short path since it will constantly choose whichever city is the closest. 
 
 \noindent
 Figure \ref{MeanDiagram} is also saying that the 2-opt is generally good, but especially on maps where it is common that crosses exist. Since 2-opt will generally make changes if the two chosen edges cross each other swapping them would lead to a shorter path.
