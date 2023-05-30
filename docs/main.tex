@@ -611,7 +611,7 @@ After 6 runs of each combination of algorithm and map, the results were recorded
 
 \subsection{Processed Results}
 
-The mean and standard deviation are given in tables \ref{Table 1} and \ref{Table 2}.
+The mean and standard deviation are given in Tables \ref{Table 1} and \ref{Table 2}.
 
 \begin{table}[H]
     \caption{Mean and standard deviations of the raw results for each algorithm for maps 1 to 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 1}
@@ -749,17 +749,17 @@ The mean and standard deviation are given in tables \ref{Table 1} and \ref{Table
 \end{figure}
 
 \noindent
-In Figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used, on for example maps 6 and 7. 
+In Figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with Tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used, on for example maps 6 and 7. 
 
 %\subsection{Statistical Tests}
 
 \section{Discussion}\label{sec4}
 
 \subsection{Generalized Results}\label{subsec1}
-First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1, which could be seen in table \ref{Table Map 1}. All but one run when the algorithms were executed on test case 1 resulted in finding the shortest path of $5891573.876$. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
+First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1, which could be seen in Table \ref{Table Map 1}. All but one run when the algorithms were executed on test case 1 resulted in finding the shortest path of $5891573.876$. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
 
 \noindent
-Figure \ref{MeanDiagram} is showing that random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. Another thing to consider is that for map 4 according to table \ref{Table map 4}, the random generator got the same score 6 times continuously after each other.
+Figure \ref{MeanDiagram} is showing that random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. Another thing to consider is that for map 4 according to Table \ref{Table map 4}, the random generator got the same score 6 times continuously after each other.
 
 \noindent
 As mentioned in the results, Figure \ref{MeanDiagram} is showing that the 2-opt swapping algorithm can find the shorter path solving the travelling salesman problem, compared to other algorithms used in this research.
@@ -768,7 +768,7 @@ As mentioned in the results, Figure \ref{MeanDiagram} is showing that the 2-opt 
 Other than that, between the two genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. This could be seen by looking at their means across all maps in for example Figure \ref{MeanDiagram}. 
 
 \noindent
-At the same time, the standard deviation is relatively low compared to their mean distance values, which could be seen in the tables \ref{Table 1} and \ref{Table 2}. 
+At the same time, the standard deviation is relatively low compared to their mean distance values, which could be seen in the Tables \ref{Table 1} and \ref{Table 2}. 
 
 \subsection{Specified Results}\label{subsec2}
 Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples that the modified Dijkstra's algorithm excels at are map 6 and map 7, which could be seen in the mean results in Figure \ref{MeanDiagram}. Map 6 consists of strictly increasing coordinates, which makes it easier for modified Dijkstra's algorithm to find a short path since it will constantly choose whichever city is the closest. 
