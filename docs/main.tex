@@ -14,6 +14,9 @@
 \usepackage{algpseudocode}%
 \usepackage{listings}%
 
+
+
+
 \usepackage{tikz}%draw graphs
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
@@ -62,8 +65,8 @@
 \usepackage{geometry}
 \geometry{
  a4paper,
- total={170mm,257mm},
- left=20mm,
+ total={150mm,257mm},
+ left=30mm,
  top=20mm
 }
 
@@ -88,22 +91,25 @@
 \thispagestyle{empty} 
 \newpage
 
-\selectlanguage{swedish}
-\abstract{
+\begin{center}
+    \textbf{Abstrakt}
+\end{center}
 \noindent Denna studie undersöker handelsresandeproblemet (TSP) på det Euklidiska planet, vilket är känt som ett NP-fullständigt problem. Olika heuristiska algoritmer och strategier används vanligtvis för att tackla detta problem. I denna artikel jämförs fyra olika heuristiska algoritmer: slumpmässig generering, modifierad Dijkstras algoritm, slumpmässig omplacering och 2-opt-omplacering. Målet är att identifiera den algoritm som kan producera den mest optimala lösningen inom en tidsbegränsning på 2 sekunder. För att bedöma deras prestanda testas alla algoritmer på olika testfall. Varje algoritm körs sex gånger på 10 olika testfall med varierande storlek, fördelning och egenskaper. Resultaten avslöjar flera relevanta fynd. Framför allt presterar 2-opt-algoritmen konsekvent bättre än de andra tre algoritmerna och ger övergripande sett de mest optimala lösningarna. Det är dock värt att notera att den modifierade Dijkstras algoritmen utmärker sig i scenarier där den optimala vägen nära följer naturliga rutter. Samtidigt presterar slumpmässig omplacering konsekvent sämre än 2-opt-algoritmen, medan slumpmässig generering visar sämst prestanda av de fyra algoritmerna. All kod finns tillgänglig vid \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.
-}
 
-\keywords{handelsresandeproblemet, euklidiska avstånd, grafer, heuristiska algoritmer}
+\textbf{\textit{Nyckelord}:} handelsresandeproblemet, euklidiska avstånd, grafer, heuristiska algoritmer
+
 
 \thispagestyle{empty}
 \newpage
 
-\selectlanguage{english}
-\abstract{
+\begin{center}
+    \textbf{Abstract}
+\end{center}
 \noindent This study investigates the Traveling Salesman Problem (TSP) on the Euclidean plane, which is known to be an NP-complete problem. Various heuristic algorithms and strategies are commonly employed to tackle this problem. In this paper, four distinct heuristic algorithms are compared: random generation, modified Dijkstra's algorithm, random swapping, and 2-opt swapping. The aim is to identify the algorithm that can produce the most optimal solution within a 2-second time constraint. To assess their performance, all algorithms are tested on different test cases. Each algorithm is executed six times on 10 diverse test cases, featuring varying sizes, distributions, and traits. The obtained results reveal several key findings. Primarily, the 2-opt algorithm consistently outperforms the other three algorithms, yielding the most optimal solutions overall. However, it is noteworthy that the modified Dijkstra's algorithm excels in scenarios where the optimal path closely aligns with natural pathways. Conversely, the random swapping algorithm consistently performs worse than the 2-opt algorithm, while the random generation algorithm exhibits the poorest performance among the four algorithms. The codes are available at \href{https://github.com/hairez/diploma-project}{https://github.com/hairez/diploma-project}.
-}
 
-\keywords{travelling salesman problem, Euclidean distance, graph, heuristic algorithms}
+\textbf{\textit{Keywords}:} travelling salesman problem, Euclidean distance, graph, heuristic algorithms
+
+
 
 \thispagestyle{empty} 
 \newpage
@@ -131,7 +137,7 @@ The travelling salesman problem could also be interpreted as a weighted undirect
 \newline
 Variations of the traveling salesman problem exist \cite{gutin_punnen_2007}, however, the version where the goal is to minimize the distance in Euclidean space is currently an NP-complete$_{\ref{NP-complete}}$ problem \cite{PAPADIMITRIOU1977}. 
 \newline
-Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given map with cities. However, there are algorithms that can guarantee solutions that will be some constant number factor within the optimal solution \cite{Christofides}. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
+Evidence shows that there exist no algorithms that could find the definite shortest path in polynomial time, at the same time as there are no algorithms that can guarantee any accuracy in any given Map with cities. However, there are algorithms that can guarantee solutions that will be some constant number factor within the optimal solution \cite{Christofides}. Other than that, verifying if any specific path is the most optimal is also unmanageable. \cite{PAPADIMITRIOU1977}
 \newline
 For example, a brute force solution could be considered to solve the classic travelling salesman problem, where all possible permutations of the order are computed, and then picking the shortest path out of all possible paths. Although this would be applicable to a smaller number of cities, the number of permutations possible would have a factorial$_{\ref{factorial}}$ growth the more cities that are required to be visited. 
 \newline
@@ -183,11 +189,11 @@ When computer scientists want to compare different kinds of algorithms, they can
 The ``O'' in Big O notation stands for ``order of magnitude'', which means that the function described grows a the same rate or within a constant factor as the function that is given. Hence when describing time complexities using big O notation, the coefficient becomes irrelevant. For example, an algorithm such as calculating the roots of a quadratic equation takes a constant time regardless of the size of the coefficients and has a time complexity of $O(1)$, even though the algorithm could possibly perform more than $1$ operation. If the time complexity of an algorithm grows linearly with the size of the input, the time complexity of the algorithm would be $O(n)$. An example of an algorithm with a linear time complexity would be to calculate the sum of an array with $n$ integers. The algorithm would be required to iterate through the whole array, as long as no other sum using this array has been pre-computed. Some other examples of common time complexities are: $O(\log{n})$, $O(n \log{n})$, $O(n^2)$, $O(2^n)$, and $O(n!)$.
 
 \subsubsection{Heuristic Algorithms}\label{Heuristic}
-When trying to solve a computational problem, it is crucial to find a relatively fast approach that is both efficient in finding the most optimal path and in a short period of time, especially when a large amount of input is considered. A common rule of thumb within competitive programming is to always use a program that performs less than $10^7$ operations.
+When trying to solve a computational problem, it is crucial to find a relatively fast approach that is both efficient in finding the most optimal solution and in a short period of time, especially when a large amount of input is considered. A common rule of thumb within competitive programming is to always use a program that performs less than $10^7$ operations.
 \newline
-As mentioned in the background, a brute force solution trying all possible paths for the travelling salesman problem would take an exceeding number of operations to compute. The time complexity of a brute force solution would be $O(n!)$, which means that it would be a sufficient enough algorithm if the number of cities would be less or equal to $10$, since $10! = 3628800 < 10^7$ and $11! > 10^7$. Any map with more than $10$ cities would take a lot more time before stopping to compute, while maps with more than $1000$ would not even stop computing after several years.
+As mentioned in the background, a brute force solution trying all possible paths for the travelling salesman problem would take an exceeding number of operations to compute. The time complexity of a brute force solution would be $O(n!)$, which means that it would be a sufficient enough algorithm if the number of cities would be less or equal to $10$, since $10! = 3628800 < 10^7$ and $11! > 10^7$. Any Map with more than $10$ cities would take a lot more time before stopping to compute, while Maps with more than $1000$ would not even stop computing after several years.
 \newline
-When the optimal solution is either unknown or computationally infeasible to find within a reasonable time frame, heuristic algorithms are used instead to provide an approximate solution. These algorithms prioritize efficiency and practicality over exact optimality. In this research, several different heuristic algorithms are used to repeatedly find the shortest path for the travelling salesman problem, and all the heuristic algorithms used will have a time complexity that is either $O(n)$ or $O(n \log{n})$. This also implies that maps with up to $10^6$ cities could be experimented on these algorithms without spending an unreasonable amount of time waiting for the algorithms to stop computing.
+When the optimal solution is either unknown or computationally infeasible to find within a reasonable time frame, heuristic algorithms are used instead to provide an approximate solution. These algorithms prioritize efficiency and practicality over exact optimality. In this research, several different heuristic algorithms are used to repeatedly find the shortest path for the travelling salesman problem, and all the heuristic algorithms used will have a time complexity that is either $O(n)$ or $O(n \log{n})$. This also implies that Maps with up to $10^6$ cities could be experimented on these algorithms without spending an unreasonable amount of time waiting for the algorithms to stop computing.
 \newline
 The heuristic algorithms compared to solve the travelling salesman problem in this research are:
 \begin{itemize}
@@ -220,7 +226,7 @@ The random generation algorithm generates a random permutation of all possible n
 \end{algorithm}
 
 \noindent
-This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible city. One assumption could be made for the random generation algorithm, which is that it is very unlikely for it to find the most optimal path when there are a lot of cities. Especially when no other optimization is applied to make the path shorter. However, for maps with less number of cities, it is likely for the algorithm to randomly find the best path within a reasonable time limit. Similarly, for any number of cities, as long as enough time is given for the algorithm, it would eventually find the shortest path. Nevertheless, in that case, where the algorithms could run for an infinite amount of time, the brute force solution would always guarantee to find the shortest solution.
+This algorithm has a time complexity of $O(n)$, since the generation of a random path has to iterate through each possible city. One assumption could be made for the random generation algorithm, which is that it is very unlikely for it to find the most optimal path when there are a lot of cities. Especially when no other optimization is applied to make the path shorter. However, for Maps with less number of cities, it is likely for the algorithm to randomly find the best path within a reasonable time limit. Similarly, for any number of cities, as long as enough time is given for the algorithm, it would eventually find the shortest path. Nevertheless, in that case, where the algorithms could run for an infinite amount of time, the brute force solution would always guarantee to find the shortest solution.
 
 \subsubsection{Modified Dijkstra's Algorithm}\label{Dijkstras}
 Dijkstra's algorithm is an algorithm used on weighted, directed graphs with non-negative weights. Dijkstra's algorithm will find the shortest path between a source node and all other nodes in a weighted graph. The algorithm maintains a priority queue of nodes and repeatedly selects the node with the smallest known distance from the source. It then updates the distances of its neighboring nodes, considering the weights of the edges. This process continues until all nodes have been visited, and the shortest path from the source to each node is determined. It can find a relatively short path within a reasonable time limit, but it is not guaranteed to find the shortest path. In some way, Dijkstra's algorithm could be visualized as always picking the shortest path between two given nodes in the graph. Furthermore, the original Dijkstra's algorithm is used on a directed graph, starting from a source node and ending on any other node in the graph. However, that is not the case of the travelling salesman problem.
@@ -295,7 +301,7 @@ Furthermore, this version of Dijkstra's algorithm's time complexity would be $O(
 
 
 \noindent
-Undeniably, by only checking with $\log{n}$ random neighbors would not give an as optimal answer as checking with all neighbors. However, on a map with a lot of cities where many cities share the same a similar distance to another city, the probability is very high for the algorithm to pick one of those neighbors as one of the $\log{n}$ random neighbors, which would give a result very similar to the algorithm that checks with all neighbors.
+Undeniably, by only checking with $\log{n}$ random neighbors would not give an as optimal answer as checking with all neighbors. However, on a Map with a lot of cities where many cities share the same a similar distance to another city, the probability is very high for the algorithm to pick one of those neighbors as one of the $\log{n}$ random neighbors, which would give a result very similar to the algorithm that checks with all neighbors.
 
 
 
@@ -405,7 +411,7 @@ In Figure \ref{Figure:Swapping}, the order of city $3$ and city $6$ has been swa
 The algorithm required $O(n)$ to generate a random permutation of the cities. After that, it only performs a constant number of operations for each swap, which means $O(1)$ for each evaluation or swap. This repeats until 2 seconds have gone by.
 
 \noindent
-There are many advantages to a genetic algorithm since it will continuously try to improve a given solution. However, at some point, it will stop improving, since it will have reached a local optimum, which means that there are no other improvements that could be made by only swapping two cities. Eventually, it would require a bigger modification in the path for the path to become even shorter, which also implies that this algorithm cannot guarantee the optimal solution for any map either. \cite{YANG202191}
+There are many advantages to a genetic algorithm since it will continuously try to improve a given solution. However, at some point, it will stop improving, since it will have reached a local optimum, which means that there are no other improvements that could be made by only swapping two cities. Eventually, it would require a bigger modification in the path for the path to become even shorter, which also implies that this algorithm cannot guarantee the optimal solution for any Map either. \cite{YANG202191}
 
 \subsubsection{Genetic Algorithm with 2-opt swapping}\label{2-opt swapping}
 The genetic algorithm with 2-opt swapping is another genetic algorithm, but instead of swapping two random nodes, it will swap two random edges. It is similar to the genetic algorithm with random swapping$_{\ref{Random Swapping}}$, since this algorithm also starts off with a randomly generated path. Afterward, two edges are repeatedly randomly chosen. Using the nodes the edges are connected to, the change in distance can be simulated and evaluated. If this creates a longer path compared to before, then the edges are not swapped. However, if the change would make the path shorter, then the edges are swapped. This also repeats until no improvements have been made after 4000 randomly chosen pairs of edges.
@@ -550,11 +556,11 @@ The algorithm requires $O(n)$ to generate an initial random permutation of the c
 The way the 2-opt algorithm untangles crossing edges would efficiently decrease the total path of a random path, especially since the requirements for the edges to be replaced is only that the sum of the length of the new edges is shorter than the edges before. However, identically to random node swapping, this algorithm would also reach a local optimum. This also implies that this algorithm cannot guarantee to find the optimal solution.
 
 
-\subsubsection{Maps}\label{maps}
-In this research, 10 maps were generated. Some maps were randomly generated to fit some kind of shape, while others were based on actual maps from real countries such as Sweden and the United States of America.
+\subsubsection{Maps}\label{Maps}
+In this research, 10 Maps were generated. Some Maps were randomly generated to fit some kind of shape, while others were based on actual Maps from real countries such as Sweden and the United States of America.
 
 \noindent
-The maps generated are numbered from 1 to 10, and the following is a small description of each map.
+The Maps generated are numbered from 1 to 10, and the following is a small description of each Map.
 
 \begin{enumerate}
   \item 10 uniformly randomized cities.
@@ -570,22 +576,22 @@ The maps generated are numbered from 1 to 10, and the following is a small descr
 \end{enumerate}
 
 \noindent
-Maps 1, 2, and 3 consist of cities with coordinates that are uniformly chosen. Map 4 is based on real coordinates of cities existing in Sweden. The data for map 4 is taken from a GitHub repository \cite{SwedishCities}. Map 5 is based on 48 American states and the District of Columbia. Hawaii and Alaska are not included because those states are considered to be located relatively far away from all other states. The data for map 5 is taken from Dataset Publishing Language powered by Google \cite{DatasetUSA}. Maps 6 and 10 consist of randomly chosen coordinates, but the coordinates of the points are strictly increasing. This means that for any two points $p_1 = (x_1,y_1)$ and $p_2=(x_2,y_2)$ on maps 6 and 10, if $x_1 < x_2$ fulfilled, then $y_1 < y_2$ is also true. In map 7 all the points form a circle. Map 8 creates a "grid" where most cities have 4 cities that are neighboring and closest. Map 9 essentially creates a straight line. All of the test data used are visualized in the appendix \ref{appendix:TestData}. The exact test data can also be found at \href{https://github.com/hairez/diploma-project/tree/main/code/tsp/data/secret}{https://github.com/hairez/diploma-project/tree/main/code/tsp/data/secret}.
+Maps 1, 2, and 3 consist of cities with coordinates that are uniformly chosen. Map 4 is based on real coordinates of cities existing in Sweden. The data for Map 4 is taken from a GitHub repository \cite{SwedishCities}. Map 5 is based on 48 American states and the District of Columbia. Hawaii and Alaska are not included because those states are considered to be located relatively far away from all other states. The data for Map 5 is taken from Dataset Publishing Language powered by Google \cite{DatasetUSA}. Maps 6 and 10 consist of randomly chosen coordinates, but the coordinates of the points are strictly increasing. This means that for any two points $p_1 = (x_1,y_1)$ and $p_2=(x_2,y_2)$ on Maps 6 and 10, if $x_1 < x_2$ fulfilled, then $y_1 < y_2$ is also true. In Map 7 all the points form a circle. Map 8 creates a "grid" where most cities have 4 cities that are neighboring and closest. Map 9 essentially creates a straight line. All of the test data used are visualized in the appendix \ref{appendix:TestData}. The exact test data can also be found at \href{https://github.com/hairez/diploma-project/tree/main/code/tsp/data/secret}{https://github.com/hairez/diploma-project/tree/main/code/tsp/data/secret}.
 
 
 
 \subsubsection{Integers and Floats}\label{Int VS Float}
-Integers and floats are two primary data types for representing numbers in computer programming. Integers are used specifically for storing whole numbers, while floats are designed to handle decimal numerals. However, when it comes to processing float numbers, computers are generally known for their relative inefficiency compared to working with integers. For this reason, all coordinates of the maps are rounded to the nearest integer, even though coordinates on a real map are not necessarily integers. On the other hand, calculating the Euclidean distance$_{\ref{Euclidean distance}}$ requires the use of a square root, which could result in the distance being non-integer. If the distance would be rounded, it could potentially lead to an inaccurate result. For that reason, the distances of the paths are kept as floats. 
+Integers and floats are two primary data types for representing numbers in computer programming. Integers are used specifically for storing whole numbers, while floats are designed to handle decimal numerals. However, when it comes to processing float numbers, computers are generally known for their relative inefficiency compared to working with integers. For this reason, all coordinates of the Maps are rounded to the nearest integer, even though coordinates on a real Map are not necessarily integers. On the other hand, calculating the Euclidean distance$_{\ref{Euclidean distance}}$ requires the use of a square root, which could result in the distance being non-integer. If the distance would be rounded, it could potentially lead to an inaccurate result. For that reason, the distances of the paths are kept as floats. 
 
 
 
 
 \section{Methodology}\label{Methodology}
 \subsection{Method}\label{Method}
-Firstly, $10$ different maps with various numbers of cities were generated$_{\ref{maps}}$. The $10$ different maps with test data were run on $4$ separate algorithms that were made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, Genetic algorithm with random swapping$_{\ref{Random Swapping}}$, and Genetic algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Both the algorithms and the results could be found on \href{https://github.com/hairez/diploma-project/tree/main/code/tsp}{https://github.com/hairez/diploma-project/tree/main/code/tsp}. Each map was tested with each algorithm $6$ times, resulting in $6$ replicates of each combination of map and algorithm. Several replicates were made since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was set to a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results were later compared across different maps.
+Firstly, $10$ different Maps with various numbers of cities were generated$_{\ref{Maps}}$. The $10$ different Maps with test data were run on $4$ separate algorithms that were made to solve the traveling salesman problem using Euclidean distance. The algorithms used were: Random generation algorithm$_{\ref{Random}}$, Modified Dijkstra's algorithm$_{\ref{Dijkstras}}$, Genetic algorithm with random swapping$_{\ref{Random Swapping}}$, and Genetic algorithm with 2-opt swapping$_{\ref{2-opt swapping}}$. All algorithms were written in Python 3, and all tests were run on Python version 3.10.6 64-bit. Both the algorithms and the results could be found on \href{https://github.com/hairez/diploma-project/tree/main/code/tsp}{https://github.com/hairez/diploma-project/tree/main/code/tsp}. Each Map was tested with each algorithm $6$ times, resulting in $6$ replicates of each combination of Map and algorithm. Several replicates were made since a factor of randomness is involved in each algorithm. For each execution of the algorithm, a time limit was set to a maximum of 2 seconds. After all runs, the paths found were recorded as well as the length of the path. The results were later compared across different Maps.
 
 \noindent
-The constant variables of this method are the various maps, the time limit, computer hardware, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
+The constant variables of this method are the various Maps, the time limit, computer hardware, and the programming language used, which was Python 3. The independent variable is the algorithm used for each replicate, and the dependent variable is the length of the shortest path found using these algorithms.
 
 
 \subsection{Limitations}\label{Limitations}
@@ -598,23 +604,24 @@ At the same time, the algorithms used in the study may require more fine-tuning 
 The results of the study may be dependent on the hardware and software used for the experiments. The same algorithms may perform differently using different hardware or with different compilers.
 
 \noindent
-Another limitation is the different maps used. Since only $10$ different maps are being considered here, it would not represent fully all possible scenarios. 
+Another limitation is the different Maps used. Since only $10$ different Maps are being considered here, it would not represent fully all possible scenarios. 
 
 \noindent
-These limitations should be taken into consideration before drawing any generalized conclusion from the results of these maps.
+These limitations should be taken into consideration before drawing any generalized conclusion from the results of these Maps.
 
 
 \section{Results}\label{Results}
 \subsection{Raw Results}
-After 6 runs of each combination of algorithm and map, the results were recorded. The raw results can be found in appendix \ref{appendix:RawResults}. The lower the value, the shorter the path is.
+After 6 runs of each combination of algorithm and Map, the results were recorded. The raw results can be found in appendix \ref{appendix:RawResults}. The value in the results represents the length in length units. The lower the value is, the shorter the path.
 
 
 \subsection{Processed Results}
 
 The mean and standard deviation are given in Tables \ref{Table 1} and \ref{Table 2}.
 
+
 \begin{table}[H]
-    \caption{Mean and standard deviations of the raw results for each algorithm for maps 1 to 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 1}
+    \caption{Mean and standard deviations of the raw results for each algorithm for Maps 1 to 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 1}
     \centering
     \begin{tabular}{|l|l|l|l|l|l|}
     \hline
@@ -630,8 +637,9 @@ The mean and standard deviation are given in Tables \ref{Table 1} and \ref{Table
     \end{tabular}
 \end{table}
 
+
 \begin{table}[H]
-    \caption{Mean and standard deviations of the raw results for each algorithm for maps 6 to 10. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 2}
+    \caption{Mean and standard deviations of the raw results for each algorithm for Maps 6 to 10. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm are mentioned. The values are distance values, and all values are given in units of length.}\label{Table 2}
     \centering
     \begin{tabular}{|l|l|l|l|l|l|}
     \hline
@@ -745,36 +753,36 @@ The mean and standard deviation are given in Tables \ref{Table 1} and \ref{Table
         \legend {Random Generator, Modified Dijkstra's, Random Swapping, 2-opt Swapping};
         \end{axis}
     \end{tikzpicture}
-\caption{Bar graph displaying the means of each algorithm on each map from 1-10. All means are normalized to the mean of the results of the random generator algorithm.} \label{MeanDiagram}
+\caption{Bar graph displaying the means of each algorithm on each Map from 1-10. All means are normalized to the mean of the results of the random generator algorithm.} \label{MeanDiagram}
 \end{figure}
 
 \noindent
-In Figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with Tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used, on for example maps 6 and 7. 
+In Figure \ref{MeanDiagram}, the smaller the bar is, the better the algorithm performed. Figure \ref{MeanDiagram} together with Tables \ref{Table 1} and \ref{Table 2} shows that the 2-opt swapping algorithm is the best-performing algorithm out of the used algorithms in the majority of the test cases. Modified Dijkstra's is also shown to be performing the best out of all algorithms used on Maps 6 and 7. 
 
 %\subsection{Statistical Tests}
 
 \section{Discussion}\label{sec4}
 
 \subsection{Generalized Results}\label{subsec1}
-First of all, when the number of cities is small enough, all cities will find the shortest path possible given 2 seconds of running as shown in the results of map 1, which could be seen in Table \ref{Table Map 1}. All but one run when the algorithms were executed on test case 1 resulted in finding the shortest path of $5891573.876$. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
+When the number of cities is sufficiently small, all algorithms will find the shortest path possible given 2 seconds of running as shown in the results of Map 1, which could be seen in Table \ref{Table Map 1}. All but one run when the algorithms were executed on test case 1 resulted in finding the shortest path of $5891573.876$. This could be explained since there are $n!$ permutations in total, and if $n\leq 10$, the algorithms could in theory calculate and find the shortest path within the time limit.
 
 \noindent
-Figure \ref{MeanDiagram} is showing that random generation performed the worst out of all of these four algorithms, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. Another thing to consider is that for map 4 according to Table \ref{Table map 4}, the random generator got the same score 6 times continuously after each other.
+Figure \ref{MeanDiagram} shows that random generation performed the worst out of the four algorithms on the Maps that were tested, which could be explained since no kind of optimization to find the shortest path is utilized when generating the random path. This suggests that it is the worst algorithm out of the four algorithms tested in general. Another thing to take notice of is the fact that on Map 4 according to Table \ref{Table Map 4}, the random generator got the same score 6 times. This could be explained since the first path the random generation algorithm tries is always the permutation of all indices in an increasing order, which is $0 \rightarrow 1 \rightarrow 2 \rightarrow ... \rightarrow n$. One explanation is that this path is one of the shorter ones possible, and the possibility for the algorithm to randomly find a shorter path is very small. 
 
 \noindent
-As mentioned in the results, Figure \ref{MeanDiagram} is showing that the 2-opt swapping algorithm can find the shorter path solving the travelling salesman problem, compared to other algorithms used in this research.
+As mentioned in the results, Figure \ref{MeanDiagram} is showing that the 2-opt swapping algorithm can find a shorter path, compared to the other algorithms used in this research.
 
 \noindent
-Other than that, between the two genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the maps tested in this experiment. This could be seen by looking at their means across all maps in for example Figure \ref{MeanDiagram}. 
+Other than that, between the two genetic algorithms, the 2-opt swapping performed better compared to random swapping across all the Maps tested in this experiment. This could be seen by looking at their means across all Maps in for example Figure \ref{MeanDiagram}. 
 
 \noindent
 At the same time, the standard deviation is relatively low compared to their mean distance values, which could be seen in the Tables \ref{Table 1} and \ref{Table 2}. 
 
 \subsection{Specified Results}\label{subsec2}
-Modified Dijkstra's algorithm works best out of these four when there is a clear path across the map and when there are a high number of nodes close to each other that are the closest. Some examples that the modified Dijkstra's algorithm excels at are map 6 and map 7, which could be seen in the mean results in Figure \ref{MeanDiagram}. Map 6 consists of strictly increasing coordinates, which makes it easier for modified Dijkstra's algorithm to find a short path since it will constantly choose whichever city is the closest. 
+Modified Dijkstra's algorithm works best out of these four when there is a clear path across the Map and when there are a high number of nodes close to each other that are the closest. Some examples that the modified Dijkstra's algorithm excels at are Map 6 and Map 7, which could be seen in the mean results in Figure \ref{MeanDiagram}. Map 6 consists of strictly increasing coordinates, which makes it easier for modified Dijkstra's algorithm to find a short path since it will constantly choose whichever city is the closest. 
 
 \noindent
-Figure \ref{MeanDiagram} is also saying that the 2-opt is generally good, but especially on maps where it is common that crosses exist. Since 2-opt will generally make changes if the two chosen edges cross each other swapping them would lead to a shorter path.
+Figure \ref{MeanDiagram} is also saying that the 2-opt is generally good, but especially on Maps where it is common that crosses exist. Since 2-opt will generally make changes if the two chosen edges cross each other swapping them would lead to a shorter path.
 
 
 \subsection{Evaluation and further research}\label{subsec3}
@@ -787,7 +795,7 @@ Other than that, in this paper, only 4 separate algorithms were considered. Ther
 Further research should be conducted using other algorithms with different strategies and time complexities. Some examples of algorithms to use are the Christofides algorithm, simulated annealing, 3-opt, or even Lin-Kernighan Heuristic algorithm. A longer time constraint could be considered if algorithms with bigger time complexities are used. Furthermore, to find the most optimal algorithm to solve the travelling salesman problem, different combinations of the algorithms should be tried. 
 
 \noindent
-Another thing to try is to use more maps and test cases with different shapes and distributions. In this paper, only one map of each trait and size was used, but different test cases using the trait could be generated without any bigger issues. Constant factors of the algorithms could definitely also be improved, which could eventually lead to the algorithms performing the best that they could without wasting operations.
+Another thing to try is to use more Maps and test cases with different shapes and distributions. In this paper, only one Map of each trait and size was used, but different test cases using the trait could be generated without any bigger issues. Constant factors of the algorithms could definitely also be improved, which could eventually lead to the algorithms performing the best that they could without wasting operations.
 
 \newpage
 
@@ -873,7 +881,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \label{appendix:RawResults}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 1. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}\label{Table Map 1}
+    \caption{Shortest path found from each run when run on Map 1. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}\label{Table Map 1}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -889,7 +897,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 2. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 2. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -905,7 +913,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 3. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 3. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -921,7 +929,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 4. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.} \label{Table map 4}
+    \caption{Shortest path found from each run when run on Map 4. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.} \label{Table Map 4}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -937,7 +945,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 5. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -953,7 +961,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 6. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 6. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -969,7 +977,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 7. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 7. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -985,7 +993,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 8. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 8. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -1001,7 +1009,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 9. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 9. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
@@ -1017,7 +1025,7 @@ The results in this paper suggest that 2-opt swapping is generally the most effi
 \end{table}
 
 \begin{table}[H]
-    \caption{Shortest path found from each run when run on map 10. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
+    \caption{Shortest path found from each run when run on Map 10. Random generation algorithm, modified Dijkstra's algorithm, genetic random swapping algorithm, and genetic 2-opt swapping algorithm were used. The values are distance values, which are the total length of the shortest path found after the algorithm was run for 2 seconds. Values are given in units of length.}
     \centering
     \begin{tabular}{|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|p{0.2\linewidth}|}
     \hline
